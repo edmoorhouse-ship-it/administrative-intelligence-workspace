@@ -33,7 +33,9 @@ the first client profile and stays the proof that the core can be resold.
       tested so every bidder maps without fake breakouts.
    4. **Leveling sheet + BC plug table.** (Done) Companies across, form lines down, A-I deliverables, and a
       `READY TO PLUG` table to type into BC (no import format exists; entry stays manual).
-   5. **Bidder-specific clarifications.** Drafted per bidder from that bidder's actual gaps.
+   5. **Bidder-specific clarifications.** (Done) Drafted per bidder from that bidder's actual gaps, grouped
+      (scope, price and math, drawings, terms), with a reply-by date. Copy into Outlook; mark sent and
+      answered on the page so the team and the Pulse see what is out.
    6. **Coverage board and bid calendar.** Who owes what; bids due, addenda, RFIs; Pulse shows
       trades not yet leveled, open clarifications, and bids due this week.
    Sample data only. No employer, project, vendor, or people names in the repo.

@@ -48,7 +48,13 @@ export interface Pulse {
   context: string;
 }
 
-export function constructionPulse(can: (area: Area) => boolean): Pulse {
+/** Clarification emails as the team marked them on the Bid leveling page. */
+export interface ClarificationCounts {
+  sent: { bidder: string; pkg: string; updatedAt: string }[];
+  answered: number;
+}
+
+export function constructionPulse(can: (area: Area) => boolean, clarifications: ClarificationCounts = { sent: [], answered: 0 }): Pulse {
   const seesPricing = can(PORTFOLIO_AREA.pricing);
   const seesRecords = can(PORTFOLIO_AREA.projectRecords);
   const seesRisk = can(PORTFOLIO_AREA.contractsAndRisk);
@@ -165,6 +171,12 @@ export function constructionPulse(can: (area: Area) => boolean): Pulse {
         ...inProgress.map((c): PulseLine => ({ text: `${name(c.project)} ${c.trade}: ${c.leveling.toLowerCase()}.${c.note ? ` ${c.note}` : ""}`, status: "warn" })),
         ...leveled.map((c): PulseLine => ({ text: `${name(c.project)} ${c.trade}: leveled with ${plural(c.submitted, "bid")}. The carry is the Director's call.`, status: "good" })),
         { text: `${plural(waiting.length, "package")} waiting on bids; leveling starts when they're in. Proposals are leveled on the Bid leveling page.` },
+        clarifications.sent.length
+          ? {
+              text: `${plural(clarifications.sent.length, "clarification email")} marked sent and waiting on answers: ${clarifications.sent.map((c) => `${c.bidder} (${c.pkg})`).join("; ")}.${clarifications.answered ? ` ${clarifications.answered} answered.` : ""}`,
+              status: "warn",
+            }
+          : { text: `No clarification emails marked sent and waiting${clarifications.answered ? `; ${clarifications.answered} answered` : ""}. Drafts are on the Bid leveling page.` },
       ],
     },
   ];

@@ -11,7 +11,7 @@ import { profile } from "@/profiles";
  * Adapted from the Venetian workspace's shared store.
  */
 
-export const COLLECTIONS = ["decisions", "reimbursements", "restock", "onboarding", "brain", "activity", "events"] as const;
+export const COLLECTIONS = ["decisions", "reimbursements", "restock", "onboarding", "brain", "activity", "events", "clarifications"] as const;
 export type Collection = (typeof COLLECTIONS)[number];
 
 /** Who may read and write each collection. Brain and activity are filtered item by item instead. */
@@ -23,6 +23,8 @@ export const COLLECTION_AREA: Record<Collection, Area | "per-item"> = {
   brain: "per-item",
   activity: "per-item",
   events: "per-item",
+  // Where each bidder clarification email stands. Status only: no amounts, no question text.
+  clarifications: "general",
 };
 
 export const isCollection = (name: unknown): name is Collection =>

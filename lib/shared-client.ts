@@ -11,7 +11,7 @@ import type { AdminRoleId } from "./roles";
  * Adapted from the Venetian workspace's shared client.
  */
 
-export type Collection = "decisions" | "reimbursements" | "restock" | "onboarding" | "brain" | "activity" | "events";
+export type Collection = "decisions" | "reimbursements" | "restock" | "onboarding" | "brain" | "activity" | "events" | "clarifications";
 
 export interface Person {
   id: string;

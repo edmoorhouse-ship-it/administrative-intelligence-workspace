@@ -4,10 +4,11 @@ import { useEffect, useRef, useState, type DragEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, CircleCheck, ClipboardPaste, Copy, Download, FileText, FlaskConical, LoaderCircle, Scale, TriangleAlert, Upload, X } from "lucide-react";
 import type { LevelingRun } from "@/lib/construction/run-leveling";
+import { ClarificationEmails } from "./clarification-emails";
 import { Markdown } from "./markdown";
 import { profile } from "@/profiles";
 
-type Tab = "package" | "form" | "records";
+type Tab = "package" | "emails" | "form" | "records";
 
 const ROUNDS = ["SD", "DD", "Permit", "GMP"];
 
@@ -323,6 +324,7 @@ export function LevelingView() {
               {(
                 [
                   ["package", "Leveling package (A–I)"],
+                  ["emails", `Clarification emails (${run.clarifications.filter((c) => c.questions.length).length})`],
                   ["form", "Bid form"],
                   ["records", `Proposal records (${run.records.length})`],
                 ] as [Tab, string][]
@@ -341,6 +343,7 @@ export function LevelingView() {
             </div>
             <div className="mt-4 overflow-x-auto text-[14px]">
               {tab === "package" && <Markdown text={run.packageMarkdown} />}
+              {tab === "emails" && <ClarificationEmails run={run} />}
               {tab === "form" && (
                 <>
                   <Markdown text={run.formMarkdown} />

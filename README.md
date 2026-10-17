@@ -16,6 +16,8 @@ Roles fill six fixed slots that carry the access rules in `lib/access.ts`. In th
 
 Open **http://127.0.0.1:3000/leveling** while the app is running. Drop in one trade's proposals (PDF, .txt, .eml, or a pasted email), or click **Try the sample proposals**. You get bidder cards (headline, normalized, tie-out, status), the A-I leveling package, the bid form, each proposal's record, and the BuildingConnected plug table as a CSV for Excel. Proposals are read on your computer; nothing is sent to an AI model or saved. Reading PDFs needs Poppler's `pdftotext` (Mac: `brew install poppler`).
 
+The **Clarification emails** tab drafts one email per bidder that has gaps, asking only about that bidder's own gaps, grouped into scope, price and math, drawings, and terms, with a reply-by date (2 business days by default) and a request for a revised total. Bidders with nothing to clarify get no email. Copy the draft into Outlook and send it yourself, then click **I sent it** so the team (and the Pulse) can see what's out; **Answer is in** when they reply. Nothing is sent from the workspace and nothing is marked sent for you.
+
 The rules are in `docs/construction/leveling-spec.md`; the code is in `lib/construction/`. `npm test` runs the leveling tests; `npm run level -- "09: Drywall" <files...>` does the same from Terminal.
 
 > This repo starts from the MACS (Micanopy Area Cooperative School) build, which becomes the first client profile. The notes below still describe that build.

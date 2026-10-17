@@ -5,6 +5,7 @@
  */
 
 import { buildBidForm, fitReport, formMarkdown, type FitLine } from "./bid-form.ts";
+import type { ClarificationInput } from "./clarification-email.ts";
 import { currentRecords, NOT_STATED, parseProposal, recordMarkdown, toProposal } from "./intake.ts";
 import type { Cents, Completeness, PlugStatus, SourceIntegrity, CarryStatus } from "./leveling.ts";
 import { levelingPackage, plugTableCsv } from "./leveling-sheet.ts";
@@ -43,6 +44,8 @@ export interface LevelingRun {
   notes: string[];
   packageMarkdown: string;
   csv: string;
+  /** Per bidder, in leveling order: what the clarification email needs. Bidders with no questions get none. */
+  clarifications: ClarificationInput[];
 }
 
 export function runLeveling(inputs: ProposalText[], pkg: string, round: string): LevelingRun {
@@ -78,5 +81,17 @@ export function runLeveling(inputs: ProposalText[], pkg: string, round: string):
     notes: built.notes,
     packageMarkdown: pack.markdown,
     csv: plugTableCsv(built.form, proposals),
+    clarifications: pack.clarifications.map((c) => {
+      const r = records.find((x) => x.vendor === c.bidder);
+      return {
+        bidder: c.bidder,
+        project,
+        pkg,
+        proposalDate: r?.date ?? NOT_STATED,
+        revision: r?.revision ?? null,
+        contact: r?.contact ?? NOT_STATED,
+        questions: c.questions,
+      };
+    }),
   };
 }

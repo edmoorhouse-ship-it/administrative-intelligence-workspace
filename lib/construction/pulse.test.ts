@@ -48,7 +48,8 @@ test("roles without pricing see no dollars, no estimate section, and no decision
 
 test("the pulse never reports entered, sent, or awarded, and never picks the low bid", () => {
   const text = JSON.stringify(constructionPulse(everyone));
-  assert.doesNotMatch(text, /\bENTERED\b|\bsent\b|\bawarded\b|lowest bid/i);
+  // "Marked sent" reports what a person recorded; the pulse itself never claims anything went out.
+  assert.doesNotMatch(text, /\bENTERED\b|\b(was|were|has been|have been) sent\b|\bawarded\b|lowest bid/i);
   assert.match(text, /The carry is the Director's call/);
 });
 
@@ -76,4 +77,11 @@ test("calendar: standing meetings land on the right days", () => {
   assert.ok(weekly.length > 40 && weekly.every((e) => new Date(`${e.date}T12:00:00Z`).getUTCDay() === 1));
   const review = events.filter((e) => e.title === "Development cost review").map((e) => e.date);
   assert.ok(review.includes("2026-10-22") && !review.includes("2026-10-15"));
+});
+
+test("clarification emails marked sent show on the pulse as waiting", () => {
+  const none = constructionPulse(everyone);
+  assert.match(none.context, /No clarification emails marked sent/);
+  const some = constructionPulse(everyone, { sent: [{ bidder: "Coastal Interiors (sample)", pkg: "09: Drywall", updatedAt: "2026-10-16T15:00:00Z" }], answered: 1 });
+  assert.match(some.context, /1 clarification email marked sent and waiting on answers: Coastal Interiors \(sample\) \(09: Drywall\)\. 1 answered\./);
 });
