@@ -280,7 +280,7 @@ export function Workspace({ me }: { me: Person }) {
     if (fact) await brainAction({ action: "propose", text: fact, area, origin: page, agent: "Mac" });
     if (toolId === "calendar") {
       const event = suggestedCalendarEvent(reply);
-      if (event) await calendarAction({ action: "propose", date: event.date, time: event.time, title: event.title, area: event.area, agent: "Manny" });
+      if (event) await calendarAction({ action: "propose", date: event.date, time: event.time, title: event.title, area: event.area, agent: profile.helper.name });
     }
   };
 

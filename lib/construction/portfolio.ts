@@ -13,10 +13,9 @@
 
 import type { Area } from "../access.ts";
 
-export const PORTFOLIO_AS_OF = "2026-10-16";
+import { PORTFOLIO_AS_OF, PORTFOLIO_NOTICE } from "./portfolio-meta.ts";
 
-export const PORTFOLIO_NOTICE =
-  "Sample data: invented projects, bidders, and figures for demonstration only. Not company records. Verify against the estimate, BuildingConnected, and the drawings before use.";
+export { PORTFOLIO_AS_OF, PORTFOLIO_NOTICE };
 
 const DAY = 86_400_000;
 export const daysUntil = (iso: string, from = PORTFOLIO_AS_OF) => Math.round((Date.parse(`${iso}T12:00:00`) - Date.parse(`${from}T12:00:00`)) / DAY);
@@ -457,6 +456,20 @@ const addenda = [
   { project: "P-102", number: "Addendum 3", issued: "2026-10-14", summary: "Revised wall types (UL assemblies at corridors); drywall bids moved to 10/22.", bidderAcknowledgement: "7 of 21 active bidders have acknowledged." },
 ];
 
+/** Pre-bid meetings, walks, and scope calls (sample). */
+const meetings = [
+  { project: "P-102", what: "Pre-bid meeting", date: "2026-09-29", time: "10:00 AM" },
+  { project: "P-103", what: "Drywall scope review call with bidders", date: "2026-10-20", time: "1:00 PM" },
+  { project: "P-101", what: "Budget pricing walk with framers and MEP", date: "2026-10-21", time: "10:00 AM" },
+  { project: "P-104", what: "Site visit with the civil engineer", date: "2026-10-27", time: "9:00 AM" },
+];
+
+/** Standing meetings (sample). The cost review runs every other Thursday from the first date. */
+export const RECURRING = {
+  preconWeekly: { what: "Weekly precon meeting", weekday: 1, time: "9:00 AM" },
+  developmentCostReview: { what: "Development cost review", firstDate: "2026-10-08", everyDays: 14, time: "2:00 PM" },
+};
+
 const drawingLog = [
   { project: "P-101", set: "DD set", date: "2026-10-02", note: "Architectural, structural narrative, MEP narrative." },
   { project: "P-102", set: "Permit set", date: "2026-09-18" },
@@ -494,6 +507,13 @@ const veSummary = (Object.keys(budgets) as ProjectId[]).map((project) => {
     notYetPriced: items.filter((v) => v.savings === null).map((v) => v.id),
   };
 });
+
+/** When bids stop being good. Expired proposals need a re-confirm before the carry. */
+const proposalValidity = [
+  { package: "P-103 03-3000", bidder: "Riverbend Structures (sample)", validThrough: "2026-10-30" },
+  { package: "P-102 03-4000", bidder: "Meridian Precast (sample)", validThrough: "2026-11-11" },
+  { package: "P-103 14-2000", bidder: "Vertical Lift Co. (sample)", validThrough: "2026-11-20" },
+].map((v) => ({ ...v, daysLeft: daysUntil(v.validThrough) }));
 
 const decisionsNeeded = [
   { project: "P-103", decision: "Concrete carry: Coquina (normalized low) or Riverbend (headline low, excludes PT)", owner: "Preconstruction Director", by: "2026-10-23" },
@@ -541,6 +561,7 @@ export const portfolio = {
   projects: projectInfo.map((p) => ({ ...p, daysToNextMilestone: daysUntil(p.nextMilestone.date) })),
   coverage: packages.map(coverage),
   addenda,
+  meetings,
   pricing: {
     estimates: priced,
     portfolioTotals: {
@@ -552,6 +573,7 @@ export const portfolio = {
     veLog,
     veSummary,
     decisionsNeeded,
+    proposalValidity,
   },
   projectRecords: { drawingLog, rfis },
   contractsAndRisk: { risks, contractTerms },

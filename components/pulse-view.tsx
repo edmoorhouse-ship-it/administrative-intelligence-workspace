@@ -2,8 +2,10 @@
 
 import { FlaskConical } from "lucide-react";
 import { SAMPLE_DATA_NOTICE } from "@/lib/data-notice";
-import { pulse, STATUS_LABEL, type PulseLine, type Status } from "@/lib/pulse";
-import { PULSE_CARDS, PULSE_CONTEXT, withDecisions } from "@/lib/tool-pages";
+import { pulse as macsPulse, STATUS_LABEL, type PulseLine, type Status } from "@/lib/pulse";
+import { useServerPulse } from "@/lib/profile-data-client";
+import { PULSE_CARDS, PULSE_CONTEXT, withDecisions, type DecisionCard } from "@/lib/tool-pages";
+import { profile } from "@/profiles";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
 
 const PILL: Record<Status, string> = {
@@ -38,10 +40,27 @@ function LineText({ line }: { line: PulseLine }) {
   );
 }
 
-/** Business pulse for MACS: one page, same structure as the business-pulse skill. */
+type PulseData = Omit<typeof macsPulse, "overall"> & { overall: Status };
+
+/** Business pulse: one page, same structure as the business-pulse skill. */
 export function PulseView({ dock }: { dock: ToolDock }) {
+  return profile.id === "macs" ? <PulsePage dock={dock} pulse={macsPulse} context={PULSE_CONTEXT} cards={PULSE_CARDS} /> : <ServerPulse dock={dock} />;
+}
+
+/** The construction Pulse comes from the server, already cut to the person's role. */
+function ServerPulse({ dock }: { dock: ToolDock }) {
+  const data = useServerPulse();
+  if (data === null) return <p className="mx-auto w-full max-w-3xl px-4 pt-10 text-[14px] text-muted">Loading the pulse…</p>;
+  if (data === "error") return <p className="mx-auto w-full max-w-3xl px-4 pt-10 text-[14px] text-danger">The pulse couldn&apos;t load. Refresh the page to try again.</p>;
+  const { context, ...pulse } = data;
+  return <PulsePage dock={dock} pulse={pulse} context={context} cards={NO_CARDS} />;
+}
+
+const NO_CARDS: DecisionCard[] = [];
+
+function PulsePage({ dock, pulse, context, cards }: { dock: ToolDock; pulse: PulseData; context: string; cards: DecisionCard[] }) {
   const decisions = useDecisions();
-  const ask = (text: string) => dock.onAsk("pulse", text, withDecisions(PULSE_CONTEXT, PULSE_CARDS, decisions));
+  const ask = (text: string) => dock.onAsk("pulse", text, withDecisions(context, cards, decisions));
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 pb-16 pt-8">
@@ -73,7 +92,7 @@ export function PulseView({ dock }: { dock: ToolDock }) {
         ))}
       </div>
 
-      <DecisionDeck cards={PULSE_CARDS} onAsk={ask} disabled={dock.composer.isStreaming} page="Business pulse" />
+      {cards.length > 0 && <DecisionDeck cards={cards} onAsk={ask} disabled={dock.composer.isStreaming} page="Business pulse" />}
 
       <section className="mt-8">
         <h2 className="text-[13px] font-medium uppercase tracking-[0.08em] text-muted">TL;DR</h2>

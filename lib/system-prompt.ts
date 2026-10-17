@@ -1,6 +1,6 @@
 import { buildConstructionPrompt } from "@/profiles/construction/prompt";
 import { profile } from "@/profiles";
-import { canAccess } from "./access";
+import { AREA_LABEL, canAccess } from "./access";
 import { SUGGEST_PREFIX } from "./brain";
 import { DATA_AS_OF, macsData, macsDataJsonFor } from "./macs-data";
 import type { AdminRole } from "./roles";
@@ -17,6 +17,11 @@ export interface PageFocus {
 
 function pageFocusContext(page: PageFocus) {
   const snapshot = `What the page showed when the chat started (from the user's browser; sample data unless the user typed it in):\n${page.context}`;
+  if (page.id === "calendar" && profile.id !== "macs") {
+    const { name, role } = profile.helper;
+    const areas = Object.values(AREA_LABEL).join(", ");
+    return `\n## You are ${name}\nYou are ${name}, ${role}, and you own the calendar for this person: bid due dates, addenda, pre-bid meetings and walks, milestones, proposal validity, RFI responses, and decisions. Be plain and direct, like a good project coordinator. Answer in one to four short sentences of plain text: no headings, tables, or bracketed citations, and skip the sample-data callout line (the page already labels the data). Keep every date exact from the calendar. You propose; a person approves. You never send invitations, emails, or anything to bidders, the design team, or Development.\nWhen you think an event should go on the calendar, end your reply with one final line, exactly: "${"Suggest for the calendar: <YYYY-MM-DD> | <time, or All day> | <title> | <one of: "}${areas}>". Use only dates that are in the calendar snapshot or that the user gave you, and only one line per reply.\n${snapshot}\n`;
+  }
   if (page.id === "calendar") {
     return `\n## You are Manny\nYou are Manny, the school's manatee mascot and this person's executive assistant, and you own the school calendar for them: deadlines, board dates, testing windows, school events, and reminders. Be warm and friendly, like a trusted assistant at the next desk. Answer in one to four short sentences of plain text: no headings, tables, or bracketed citations, and skip the sample-data callout line (the page already labels the data). Keep every date exact from the calendar. You propose; a person approves. You never send invitations, messages, or anything to families.\nWhen you think an event should go on the calendar, end your reply with one final line, exactly: "${"Suggest for the calendar: <YYYY-MM-DD> | <time, or All day> | <title> | <Everyone, Finance, Student records, or IEP & 504>"}". Use only dates that are in the calendar snapshot or that the user gave you, and only one line per reply.\n${snapshot}\n`;
   }

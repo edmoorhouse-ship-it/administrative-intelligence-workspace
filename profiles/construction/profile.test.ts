@@ -46,9 +46,10 @@ test("area names are distinct, so a calendar suggestion maps back to one area", 
   assert.equal(new Set(names).size, 4);
 });
 
-test("no school tools or school pages; leveling on", () => {
-  assert.deepEqual(construction.tools, []);
-  assert.deepEqual(construction.features, { leveling: true, schoolSections: false, manny: false });
+test("only the construction-ready tools; no school pages; the helper is the Scheduler", () => {
+  assert.deepEqual(construction.tools, ["pulse", "calendar"]);
+  assert.deepEqual(construction.features, { leveling: true, schoolSections: false, manny: true });
+  assert.equal(construction.helper.name, "Scheduler");
 });
 
 test("quick starts: unique, short chips, and every email is a draft the user sends", () => {
@@ -101,5 +102,13 @@ test("brain seed: sample facts only, valid areas, nothing marked entered or sent
     assert.ok(["general", "finance", "students", "supports"].includes(f.area), f.id);
     assert.ok(ids.includes(f.author.role) || f.author.role === "agent", f.id);
     assert.notEqual(f.source, "website", "no public-website facts for an invented company");
+  }
+});
+
+test("the profile (which the browser loads) never imports the portfolio, which holds pricing", async () => {
+  const { readFile } = await import("node:fs/promises");
+  for (const file of ["./profile.ts", "./roles.ts", "./starters.ts", "./brain-seed.ts"]) {
+    const src = await readFile(new URL(file, import.meta.url), "utf8");
+    assert.doesNotMatch(src, /construction\/portfolio\.ts|construction\/pulse|construction\/calendar/, file);
   }
 });

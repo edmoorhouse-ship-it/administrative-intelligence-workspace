@@ -6,7 +6,6 @@ import { areasFor, canAccess, canApprove, type Area } from "@/lib/access";
 import {
   addDays,
   AREA_NAME,
-  CALENDAR_EVENTS,
   type CalEvent,
   calendarContext,
   CALENDAR_SUGGEST_PREFIX,
@@ -20,6 +19,8 @@ import {
   upcomingDeadlines,
 } from "@/lib/calendar";
 import { DATA_AS_OF } from "@/lib/data-notice";
+import { useBaseEvents } from "@/lib/profile-data-client";
+import { profile } from "@/profiles";
 import type { AdminRoleId } from "@/lib/roles";
 import { calendarAction, logActivity, type Person, useShared } from "@/lib/shared-client";
 
@@ -61,6 +62,18 @@ const store = {
   },
 };
 
+const HELPER = profile.helper.name;
+
+/** The helper's face: Manny's manatee, or a calendar on the brand color. */
+export function HelperFace({ size = 48 }: { size?: number }) {
+  if (profile.helper.face === "manatee") return <MannyFace size={size} />;
+  return (
+    <span className="flex items-center justify-center rounded-full bg-brand-deep text-white" style={{ width: size, height: size }} aria-hidden="true">
+      <CalendarDays style={{ width: size * 0.5, height: size * 0.5 }} strokeWidth={1.75} />
+    </span>
+  );
+}
+
 /** The manatee, wearing an executive bow tie. */
 export function MannyFace({ size = 48 }: { size?: number }) {
   return (
@@ -99,10 +112,11 @@ function greeting(now: Date) {
 /** The calendar this person sees: public dates, sample deadlines, and approved or proposed shared events. */
 function useMyCalendar(role: AdminRoleId) {
   const [shared] = useShared<SharedEvent[]>("events", NO_EVENTS);
+  const base = useBaseEvents();
   const events = useMemo(() => {
     const mine = sharedAsCalendar(shared.filter((e) => canAccess(role, e.area)));
-    return eventsFor(role, [...CALENDAR_EVENTS, ...mine]).sort((a, b) => a.date.localeCompare(b.date) || (a.time ?? "").localeCompare(b.time ?? ""));
-  }, [shared, role]);
+    return eventsFor(role, [...base, ...mine]).sort((a, b) => a.date.localeCompare(b.date) || (a.time ?? "").localeCompare(b.time ?? ""));
+  }, [base, shared, role]);
   const waiting = shared.filter((e) => e.status === "proposed" && canApprove(role, e.area));
   return { events, waiting };
 }
@@ -137,7 +151,7 @@ function AddCard({ role, onDone }: { role: AdminRoleId; onDone: (text: string) =
     setBusy(true);
     setError(null);
     const fields = { title: f.title.trim(), date: f.date, time: f.time.trim() || undefined, area: f.area };
-    const err = await calendarAction(approves ? { action: "add", ...fields } : { action: "propose", ...fields, agent: "Manny" });
+    const err = await calendarAction(approves ? { action: "add", ...fields } : { action: "propose", ...fields, agent: HELPER });
     setBusy(false);
     if (err) return setError(err);
     setDone(true);
@@ -238,7 +252,7 @@ export function Manny({
     setOpen(true);
     if (msgs.length === 0) {
       push(
-        { from: "manny", text: `Hi ${first}, I'm Manny, the school's executive assistant. I'm automated, not a person.` },
+        { from: "manny", text: `Hi ${first}, I'm ${HELPER}, ${profile.helper.role}. I'm automated, not a person.` },
         { from: "manny", text: "I keep the calendar straight and tell you what needs you. I draft and propose; you decide." },
       );
     }
@@ -291,7 +305,7 @@ export function Manny({
         }),
       });
       if (!res.ok || !res.body) {
-        let reason = `Manny couldn't reach the AI (${res.status}). The buttons above still work.`;
+        let reason = `${HELPER} couldn't reach the AI (${res.status}). The buttons above still work.`;
         try {
           const body = (await res.json()) as { error?: string };
           if (body.error) reason = body.error;
@@ -317,11 +331,11 @@ export function Manny({
           setMsgs((prev) => prev.map((m) => (m.id === replyId ? { ...m, text } : m)));
         }
       }
-      if (!reply.trim()) return fail("Manny didn't answer. Try again, or use the buttons above.");
-      void logActivity("asked Manny about the calendar", "general", "Calendar", "Manny");
+      if (!reply.trim()) return fail(`${HELPER} didn't answer. Try again, or use the buttons above.`);
+      void logActivity(`asked ${HELPER} about the calendar`, "general", "Calendar", HELPER);
       const event = suggestedCalendarEvent(reply);
       if (event) {
-        const err = await calendarAction({ action: "propose", ...event, agent: "Manny" });
+        const err = await calendarAction({ action: "propose", ...event, agent: HELPER });
         push({ from: "manny", text: err ? `I tried to propose "${event.title}" but the server said: ${err}` : `I proposed "${event.title}" for ${shortDay(event.date)}. It's waiting for approval.` });
       }
     } catch (err) {
@@ -419,7 +433,7 @@ export function Manny({
           >
             <X className="size-3.5" />
           </button>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-brand">Manny</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-brand">{HELPER}</p>
           <p className="mt-1 pr-4 text-[14px] leading-5 text-fg">{nudgeText}</p>
           <div className="mt-3 flex gap-2">
             <button
@@ -446,14 +460,14 @@ export function Manny({
       {open && (
         <section
           role="dialog"
-          aria-label="Manny, your assistant"
+          aria-label={`${HELPER}, your assistant`}
           className="anim-manny-rise pointer-events-auto flex h-[min(600px,calc(100dvh-8rem))] w-[380px] max-w-[calc(100vw-1.5rem)] flex-col overflow-hidden rounded-2xl bg-page shadow-[0_0_0_1px_var(--line),0_24px_60px_-20px_rgb(15_23_42/0.45)]"
         >
           <header className="flex items-start gap-3 border-b border-line bg-surface px-4 py-3">
-            <MannyFace size={40} />
+            <HelperFace size={40} />
             <div className="min-w-0 flex-1">
-              <p className="text-[15px] font-semibold text-fg">Manny</p>
-              <p className="text-[12px] leading-4 text-muted">Your executive assistant. Automated, not a person. It proposes; you decide.</p>
+              <p className="text-[15px] font-semibold text-fg">{HELPER}</p>
+              <p className="text-[12px] leading-4 text-muted">{profile.id === "macs" ? "Your executive assistant" : "Your scheduling assistant"}. Automated, not a person. It proposes; you decide.</p>
             </div>
             <button type="button" aria-label="Close" onClick={() => setOpen(false)} className="flex size-8 items-center justify-center rounded-lg text-muted hover:bg-hover hover:text-fg">
               <X className="size-4" />
@@ -484,7 +498,7 @@ export function Manny({
               ),
             )}
             {msgs.length > 0 && msgs.at(-1)?.from === "you" && !msgs.at(-1)?.failed && busy && (
-              <div className="flex w-14 items-center justify-center gap-1 rounded-2xl rounded-bl-md bg-surface py-3 shadow-[0_0_0_1px_var(--line)]" aria-label="Manny is typing">
+              <div className="flex w-14 items-center justify-center gap-1 rounded-2xl rounded-bl-md bg-surface py-3 shadow-[0_0_0_1px_var(--line)]" aria-label={`${HELPER} is typing`}>
                 {[0, 1, 2].map((i) => (
                   <span key={i} className="size-1.5 animate-bounce rounded-full bg-muted" style={{ animationDelay: `${i * 120}ms` }} />
                 ))}
@@ -516,8 +530,8 @@ export function Manny({
               ref={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Manny anything"
-              aria-label="Message Manny"
+              placeholder={`Ask ${HELPER} anything`}
+              aria-label={`Message ${HELPER}`}
               className="h-10 min-w-0 flex-1 rounded-xl bg-page px-3 text-[14px] text-fg outline-none shadow-[0_0_0_1px_var(--line)] placeholder:text-muted focus:shadow-[0_0_0_2px_var(--brand)]"
             />
             <button
@@ -530,9 +544,9 @@ export function Manny({
             </button>
           </form>
           <p className="bg-surface px-4 pb-3 pt-2 text-[11px] leading-4 text-muted">
-            Manny never sends anything to anyone. Events it suggests wait for approval.{" "}
+            {HELPER} never sends anything to anyone. Events it suggests wait for approval.{" "}
             <button type="button" onClick={hide} className="underline underline-offset-2 hover:text-fg">
-              Hide Manny
+              Hide {HELPER}
             </button>
           </p>
         </section>
@@ -541,12 +555,12 @@ export function Manny({
       <button
         type="button"
         onClick={() => (open ? setOpen(false) : begin())}
-        aria-label={open ? "Close Manny" : "Open Manny, your assistant"}
+        aria-label={open ? `Close ${HELPER}` : `Open ${HELPER}, your assistant`}
         aria-expanded={open}
         className="pointer-events-auto relative rounded-full shadow-[0_10px_28px_-8px_rgb(50_76_154/0.55)] transition-transform duration-150 hover:scale-105 active:scale-95"
       >
         <span className={open ? "block" : "anim-manny-bob block"}>
-          <MannyFace size={60} />
+          <HelperFace size={60} />
         </span>
         {!open && waiting.length + deadlines.length > 0 && (
           <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-danger text-[11px] font-semibold text-white ring-2 ring-page">

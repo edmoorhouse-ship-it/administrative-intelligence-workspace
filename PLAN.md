@@ -17,7 +17,9 @@ the first client profile and stays the proof that the core can be resold.
 3. **Data and prompt.** (Done for construction) The dataset, the "today" date, the brain's starting facts,
    and the system prompt come from the profile; shared data is stored per profile. The core keeps the
    rules (citations, sample-data labels). The construction portfolio is `lib/construction/portfolio.ts`.
-4. **Pulse and calendar.** Each profile supplies its own Pulse metrics and calendar sources.
+4. **Pulse and calendar.** (Done for construction) Each profile supplies its own Pulse metrics and calendar
+   sources. Construction builds both on the server from the portfolio, cut to the person's role, and
+   renames the calendar helper (Manny for MACS, Scheduler for construction).
 5. **Profile 1: construction / preconstruction** (the owner's day job: preconstruction lead at a
    multifamily developer-builder, pricing SD/DD/Permit/GMP with Excel, BuildingConnected, Outlook,
    Bluebeam, and a takeoff tool). Rules: `docs/construction/leveling-spec.md`. Built in this order:

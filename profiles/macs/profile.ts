@@ -25,5 +25,6 @@ export const macs: Profile = {
   starters: macsStarters,
   dataAsOf: "2026-10-14",
   dataNotice: "Sample data: illustrative figures for demonstration only — not MACS, ACPS, or FLDOE records. Verify against official sources before use.",
+  helper: { name: "Manny", role: "the school's executive assistant", face: "manatee" },
   features: { leveling: false, schoolSections: true, manny: true },
 };

@@ -1,3 +1,4 @@
+import { profile } from "@/profiles";
 import { AREA_LABEL, canAccess, type Area } from "./access";
 import { macsData } from "./macs-data";
 import type { AdminRoleId } from "./roles";
@@ -219,7 +220,11 @@ export function calendarContext(events: CalEvent[], today: string, days = 21): s
   const rows = events
     .filter((e) => e.date >= today && e.date <= end && e.kind !== "recurring")
     .map((e) => `- ${e.date} (${weekdayName(e.date, "short")})${e.time ? ` ${e.time}` : ""}: ${e.title} [${AREA_NAME[e.area]}]${e.deadline ? " DEADLINE" : ""}${e.detail ? ` · ${e.detail}` : ""}`);
-  const friday = events.some((e) => e.kind === "recurring") ? "Newsletter goes out every Friday at 4:00 PM." : "";
+  const standing = [...new Map(events.filter((e) => e.kind === "recurring" && e.date >= today && e.date <= end).map((e) => [e.title, e])).values()];
+  const friday =
+    profile.id === "macs"
+      ? events.some((e) => e.kind === "recurring") ? "Newsletter goes out every Friday at 4:00 PM." : ""
+      : standing.length ? `Standing meetings: ${standing.map((e) => `${e.title} (next ${e.date}${e.time ? ` ${e.time}` : ""})`).join("; ")}.` : "";
   const text = [`Calendar, ${today} to ${end} (what this person's role covers):`, ...rows, friday].filter(Boolean).join("\n");
   return text.length > 7_500 ? `${text.slice(0, 7_499)}…` : text;
 }

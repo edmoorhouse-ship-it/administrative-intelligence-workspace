@@ -1,4 +1,5 @@
-import { PORTFOLIO_AS_OF, PORTFOLIO_NOTICE } from "../../lib/construction/portfolio.ts";
+// Only the date and notice: the portfolio itself holds pricing and must stay on the server.
+import { PORTFOLIO_AS_OF, PORTFOLIO_NOTICE } from "../../lib/construction/portfolio-meta.ts";
 import type { Profile } from "../types";
 import { constructionRoles } from "./roles.ts";
 import { constructionStarters } from "./starters.ts";
@@ -36,11 +37,11 @@ export const construction: Profile = {
     students: "Project records",
     supports: "Contracts & risk",
   },
-  // The school tool pages stay off; Bid leveling is the first construction tool. Pulse and the
-  // calendar come back with construction data (PLAN.md step 4).
-  tools: [],
+  // Pulse and the calendar run on the sample portfolio; the other tool pages are school tools and stay off.
+  tools: ["pulse", "calendar"],
   starters: constructionStarters,
   dataAsOf: PORTFOLIO_AS_OF,
   dataNotice: PORTFOLIO_NOTICE,
-  features: { leveling: true, schoolSections: false, manny: false },
+  helper: { name: "Scheduler", role: "the precon team's scheduling assistant", face: "badge" },
+  features: { leveling: true, schoolSections: false, manny: true },
 };

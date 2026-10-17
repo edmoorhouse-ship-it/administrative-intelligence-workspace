@@ -6,7 +6,6 @@ import { areasFor, canAccess, canApprove, type Area } from "@/lib/access";
 import {
   addDays,
   AREA_NAME,
-  CALENDAR_EVENTS,
   type CalEvent,
   calendarContext,
   daysBetween,
@@ -23,6 +22,7 @@ import {
   weekdayName,
 } from "@/lib/calendar";
 import { DATA_AS_OF } from "@/lib/data-notice";
+import { useBaseEvents } from "@/lib/profile-data-client";
 import type { AdminRoleId } from "@/lib/roles";
 import { calendarAction, useShared } from "@/lib/shared-client";
 import { ToolChat, type ToolDock } from "./tool-dock";
@@ -99,7 +99,7 @@ function Chip({ e }: { e: CalEvent }) {
   );
 }
 
-/** The school calendar, filtered to the role. Month and agenda views, approvals, and Manny's proposals. */
+/** The calendar, filtered to the role. Month and agenda views, approvals, and the helper's proposals. */
 export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId }) {
   // The dataset's date, not the clock: the Pulse, Manny, and the chat count from the same day.
   const today = DATA_AS_OF;
@@ -114,11 +114,12 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
   const [adding, setAdding] = useState(false);
   const [draft, setDraft] = useState({ date: today, time: "", title: "", area: areasFor(role)[0] ?? ("general" as Area), detail: "" });
   const [error, setError] = useState<string | null>(null);
+  const base = useBaseEvents();
 
   const everything = useMemo(() => {
     const sharedCal = sharedAsCalendar(shared.filter((e) => canAccess(role, e.area)));
-    return [...CALENDAR_EVENTS, ...sharedCal].sort((a, b) => a.date.localeCompare(b.date) || (a.time ?? "").localeCompare(b.time ?? ""));
-  }, [shared, role]);
+    return [...base, ...sharedCal].sort((a, b) => a.date.localeCompare(b.date) || (a.time ?? "").localeCompare(b.time ?? ""));
+  }, [base, shared, role]);
   const visible = useMemo(() => eventsFor(role, everything).filter((e) => !off.has(e.area)), [everything, role, off]);
   const byIso = useMemo(() => {
     const m = new Map<string, CalEvent[]>();
@@ -248,7 +249,7 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
         <div className="rounded-2xl bg-surface p-4 shadow-[0_0_0_1px_var(--line)]">
           <p className="text-[12px] text-muted">Waiting for approval</p>
           <p className={`mt-1 text-[24px] font-semibold leading-tight tabular-nums ${waiting.length ? "text-gold" : "text-fg"}`}>{waiting.length}</p>
-          <p className="mt-0.5 text-[12px] text-muted">{waiting.length === 1 ? "proposal" : "proposals"} from Manny and staff</p>
+          <p className="mt-0.5 text-[12px] text-muted">{waiting.length === 1 ? "proposal" : "proposals"} from {profile.helper.name} and staff</p>
         </div>
         <div className="col-span-2 rounded-2xl bg-surface p-4 shadow-[0_0_0_1px_var(--line)] md:col-span-1">
           <p className="text-[12px] text-muted">Next up</p>
@@ -322,7 +323,7 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
           </span>
           <span className="inline-flex items-center gap-1">
             <Repeat className="size-3" strokeWidth={2.5} />
-            Repeats weekly
+            {profile.id === "macs" ? "Repeats weekly" : "Standing meeting"}
           </span>
           <span className="inline-flex items-center gap-1">
             <span className="size-2.5 rounded-[3px] shadow-[inset_0_0_0_1px_var(--muted)]" />
@@ -352,7 +353,7 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
               {weeks.map((c) => {
                 const list = byIso.get(c.iso) ?? [];
                 const items = list.filter((e) => e.kind !== "recurring");
-                const newsletter = list.some((e) => e.kind === "recurring");
+                const repeating = list.filter((e) => e.kind === "recurring");
                 const isToday = c.iso === today;
                 const isSel = c.iso === selected;
                 return (
@@ -382,10 +383,10 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
                         <Chip key={e.id} e={e} />
                       ))}
                       {items.length > 3 && <span className="px-1 text-[11px] text-muted">+{items.length - 3} more</span>}
-                      {newsletter && (
+                      {repeating.length > 0 && (
                         <span className="flex items-center gap-1 px-1 text-[10px] text-muted">
-                          <Repeat className="size-2.5" strokeWidth={2.5} />
-                          Newsletter
+                          <Repeat className="size-2.5 shrink-0" strokeWidth={2.5} />
+                          <span className="truncate">{profile.id === "macs" ? "Newsletter" : repeating.map((e) => e.title).join(" · ")}</span>
                         </span>
                       )}
                     </span>
@@ -460,7 +461,7 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
 
       <section id="waiting-for-approval" className="mt-8 scroll-mt-6" aria-label="Waiting for approval">
         <h2 className="font-serif text-[20px] text-fg">Waiting for approval</h2>
-        <p className="mt-1 text-[13px] text-muted">Manny and staff propose events. A person approves each one before it goes on the calendar.</p>
+        <p className="mt-1 text-[13px] text-muted">{profile.helper.name} and staff propose events. A person approves each one before it goes on the calendar.</p>
         {waiting.length === 0 ? (
           <p className="mt-3 text-[14px] text-muted">Nothing waiting.</p>
         ) : (

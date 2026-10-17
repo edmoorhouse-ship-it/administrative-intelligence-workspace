@@ -59,12 +59,20 @@ export interface Profile {
   dataNotice: string;
   /** Suggestion chips under the home composer. */
   starters: PromptStarter[];
+  /** The floating calendar helper (shown when features.manny is on). */
+  helper: {
+    name: string;
+    /** Who it is, in a phrase: "the school's executive assistant". */
+    role: string;
+    /** "manatee" draws Manny; "badge" draws a calendar on the brand color. */
+    face: "manatee" | "badge";
+  };
   features: {
     /** The Bid leveling page. */
     leveling: boolean;
     /** The school sections list in the sidebar (Academics, Operations, ...). */
     schoolSections: boolean;
-    /** Manny, the floating calendar helper. */
+    /** The floating calendar helper (Manny for MACS). */
     manny: boolean;
   };
 }
