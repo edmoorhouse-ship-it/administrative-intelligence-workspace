@@ -2,6 +2,12 @@
 
 A reusable AI workspace for running a business's admin work: chat grounded in the business's own data, an assistant (Manny), a shared calendar, a daily Pulse, and a shared brain with role-based access. One core, one profile per client. See `PLAN.md` for the roadmap.
 
+## Bid leveling (construction profile)
+
+Open **http://127.0.0.1:3000/leveling** while the app is running. Drop in one trade's proposals (PDF, .txt, .eml, or a pasted email), or click **Try the sample proposals**. You get bidder cards (headline, normalized, tie-out, status), the A-I leveling package, the bid form, each proposal's record, and the BuildingConnected plug table as a CSV for Excel. Proposals are read on your computer; nothing is sent to an AI model or saved. Reading PDFs needs Poppler's `pdftotext` (Mac: `brew install poppler`).
+
+The rules are in `docs/construction/leveling-spec.md`; the code is in `lib/construction/`. `npm test` runs the leveling tests; `npm run level -- "09: Drywall" <files...>` does the same from Terminal.
+
 > This repo starts from the MACS (Micanopy Area Cooperative School) build, which becomes the first client profile. The notes below still describe that build.
 
 ---
