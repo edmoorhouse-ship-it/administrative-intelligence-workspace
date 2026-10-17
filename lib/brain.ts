@@ -1,9 +1,11 @@
 import { canAccess, type Area } from "./access";
 import type { AdminRoleId } from "./roles";
 import { PUBLIC_AT_A_GLANCE, SITE_CHECKED_ON } from "./school-sections";
+import { profile } from "@/profiles";
+import { constructionBrainSeed } from "@/profiles/construction/brain-seed";
 
 /**
- * The shared brain: what MACS staff have agreed is true, each fact with its source and who
+ * The shared brain: what the team has agreed is true, each fact with its source and who
  * approved it. People and agents propose; the Director (or Finance, for finance facts) approves
  * before a fact reaches every chat. That is "AI prepares, a person acts", built into the brain.
  */
@@ -45,8 +47,8 @@ export const MAX_FACT = 600;
 const site: Author = { name: "macschool.us", role: "website" };
 const seeded = "2026-10-15T08:00:00.000Z";
 
-/** Starting facts. Website facts are public and real; sample facts are illustrative. */
-export const BRAIN_SEED: Fact[] = [
+/** MACS starting facts. Website facts are public and real; sample facts are illustrative. */
+const MACS_SEED: Fact[] = [
   {
     id: "seed-school",
     text: "MACS is a public charter school in Micanopy, Florida, serving VPK through Grade 7, sponsored by Alachua County Public Schools.",
@@ -116,6 +118,11 @@ export const BRAIN_SEED: Fact[] = [
   },
 ];
 
+const SEEDS: Record<string, Fact[]> = { macs: MACS_SEED, construction: constructionBrainSeed };
+
+/** The active profile's starting facts. */
+export const BRAIN_SEED: Fact[] = SEEDS[profile.id] ?? [];
+
 export const canSeeFact = (f: Fact, role: AdminRoleId) => canAccess(role, f.area);
 
 /** How a fact reads in the activity feed. */
@@ -126,7 +133,7 @@ export function brainContext(facts: Fact[], role: AdminRoleId): string {
   const visible = facts.filter((f) => f.status === "approved" && canSeeFact(f, role));
   if (visible.length === 0) return "";
   const lines = visible.map((f) => `- [${SOURCE_LABEL[f.source]}${f.author.role === "website" ? "" : `, added by ${f.author.name}`}] ${f.text}`);
-  return `\n## Shared brain (approved by MACS staff)\nWhat the team has agreed is true. Use it, cite it as [brain], and prefer it over guesses. Website facts are public; Sample facts are illustrative.\n${lines.join("\n")}\n`;
+  return `\n## Shared brain (approved by ${profile.shortName} staff)\nWhat the team has agreed is true. Use it, cite it as [brain], and prefer it over guesses. Website facts are public; Sample facts are illustrative.\n${lines.join("\n")}\n`;
 }
 
 /** The line an agent ends its reply with to propose a fact. The workspace files it for approval. */

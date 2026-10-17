@@ -143,7 +143,7 @@ function BrainTab({ me }: { me: Person }) {
           value={text}
           onChange={(e) => setText(e.target.value)}
           maxLength={600}
-          placeholder="One fact, in a full sentence. No student names."
+          placeholder={profile.id === "macs" ? "One fact, in a full sentence. No student names." : "One fact, in a full sentence."}
           className="mt-2 w-full resize-y rounded-lg bg-page px-3 py-2 text-[14px] text-fg outline-none shadow-[0_0_0_1px_var(--line)] placeholder:text-muted focus:shadow-[0_0_0_1px_var(--line-strong)]"
         />
         <div className="mt-2 flex flex-wrap items-center gap-2">

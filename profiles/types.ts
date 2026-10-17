@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { Area } from "../lib/access";
-import type { AdminRole } from "../lib/roles";
+import type { AdminRole, AdminRoleId } from "../lib/roles";
 import type { PromptStarter } from "../lib/starters";
 import type { ToolId } from "../lib/tools";
 
@@ -18,7 +18,8 @@ export interface Palette {
 
 /**
  * Who the workspace is for: the parts of the interface that change from one business to the next.
- * Data and the assistant's prompt move into the profile in later steps (see PLAN.md).
+ * Server-only parts (the dataset, the assistant's prompt, the brain's starting facts) are wired by
+ * profile id in lib/system-prompt.ts, lib/brain.ts, and app/api/chat so they stay out of the browser.
  */
 export interface Profile {
   id: string;
@@ -46,10 +47,16 @@ export interface Profile {
    * does not need. The first role is the fallback for unknown ids.
    */
   roles: AdminRole[];
+  /** Overrides which areas a role slot sees; slots left out keep the defaults in lib/access.ts. */
+  roleAreas?: Partial<Record<AdminRoleId, Area[]>>;
   /** Renames the access areas for this business; areas left out keep the school names. */
   areaLabels?: Partial<Record<Area, string>>;
   /** Tool pages in the sidebar, in order. Each is still limited by the role's areas. */
   tools: ToolId[];
+  /** The sample dataset's "today" (YYYY-MM-DD). */
+  dataAsOf: string;
+  /** One line shown wherever the workspace labels sample data. */
+  dataNotice: string;
   /** Suggestion chips under the home composer. */
   starters: PromptStarter[];
   features: {

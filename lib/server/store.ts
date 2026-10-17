@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import type { Area } from "@/lib/access";
+import { profile } from "@/profiles";
 
 /**
  * The shared store: one JSON file on the server that runs the app (the school's VPS), so every
@@ -35,7 +36,8 @@ export interface Doc {
 }
 
 export const DATA_DIR = process.env.MACS_DATA_DIR || path.join(process.cwd(), "data");
-const FILE = path.join(DATA_DIR, "shared.json");
+// Each profile keeps its own shared data, so switching profiles never mixes one business's brain into another's.
+const FILE = path.join(DATA_DIR, profile.id === "macs" ? "shared.json" : `shared-${profile.id}.json`);
 const MAX_CHARS = 2_000_000;
 
 interface StoreState {

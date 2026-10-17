@@ -1,4 +1,6 @@
 import { buildDemoResponse } from "@/lib/demo-response";
+import { canAccess } from "@/lib/access";
+import { buildConstructionDemo } from "@/profiles/construction/demo";
 import { INBOX_DEMO } from "@/lib/inbox";
 import { getModel, isKnownModel } from "@/lib/models";
 import { getRole, isKnownRole } from "@/lib/roles";
@@ -146,7 +148,9 @@ export async function POST(request: Request) {
         ? "I can't answer yet: no AI provider key is set in this workspace, so replies here are off."
         : parsed.mode === "inbox"
           ? INBOX_DEMO
-          : buildDemoResponse(question, model);
+          : profile.id === "construction"
+            ? buildConstructionDemo(question, (area) => canAccess(role.id, area), model.label)
+            : buildDemoResponse(question, model);
     return new Response(demoStream(demoText), {
       headers: { ...textHeaders, "X-MACS-Mode": "demo" },
     });

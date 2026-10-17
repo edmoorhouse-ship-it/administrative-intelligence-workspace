@@ -1,3 +1,6 @@
+import { buildConstructionPrompt } from "@/profiles/construction/prompt";
+import { profile } from "@/profiles";
+import { canAccess } from "./access";
 import { SUGGEST_PREFIX } from "./brain";
 import { DATA_AS_OF, macsData, macsDataJsonFor } from "./macs-data";
 import type { AdminRole } from "./roles";
@@ -34,6 +37,17 @@ export function buildSystemPrompt(
   brain = "",
 ): string {
   const custom = customInstructions?.trim().slice(0, MAX_CUSTOM_INSTRUCTIONS);
+
+  if (profile.id === "construction") {
+    return buildConstructionPrompt({
+      role,
+      can: (area) => canAccess(role.id, area),
+      custom: custom ? `\n## Custom instructions from this user\n${custom}\n` : "",
+      page: page ? pageFocusContext(page) : "",
+      brain,
+      suggestPrefix: SUGGEST_PREFIX,
+    });
+  }
 
   return `You are the Administrative Intelligence assistant for the leadership team of Micanopy Area Cooperative School (MACS), a small, community-centered public charter school in Micanopy, Florida, sponsored by Alachua County Public Schools (ACPS) and serving VPK through Grade 7.
 

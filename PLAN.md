@@ -14,8 +14,9 @@ the first client profile and stays the proof that the core can be resold.
    Pick the active profile with `WORKSPACE_PROFILE` in `.env.local`.
 2. **Roles and tools.** (Done) Roles, role areas, sidebar tools, and quick starts come from the profile.
    Roles fill six fixed slots so the access rules stay in one place.
-3. **Data and prompt.** The dataset, the "today" date, sections, and the system prompt's
-   business description come from the profile. The core keeps the rules (citations, sample-data labels).
+3. **Data and prompt.** (Done for construction) The dataset, the "today" date, the brain's starting facts,
+   and the system prompt come from the profile; shared data is stored per profile. The core keeps the
+   rules (citations, sample-data labels). The construction portfolio is `lib/construction/portfolio.ts`.
 4. **Pulse and calendar.** Each profile supplies its own Pulse metrics and calendar sources.
 5. **Profile 1: construction / preconstruction** (the owner's day job: preconstruction lead at a
    multifamily developer-builder, pricing SD/DD/Permit/GMP with Excel, BuildingConnected, Outlook,

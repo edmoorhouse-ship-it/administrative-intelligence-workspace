@@ -35,7 +35,7 @@ const ROLE_AREAS: Record<AdminRoleId, Area[]> = {
 
 export const isArea = (a: unknown): a is Area => typeof a === "string" && (AREAS as string[]).includes(a);
 
-export const areasFor = (role: AdminRoleId): Area[] => ROLE_AREAS[role] ?? ["general"];
+export const areasFor = (role: AdminRoleId): Area[] => profile.roleAreas?.[role] ?? ROLE_AREAS[role] ?? ["general"];
 
 export const canAccess = (role: AdminRoleId, area: Area) => areasFor(role).includes(area);
 

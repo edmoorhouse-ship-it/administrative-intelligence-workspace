@@ -60,3 +60,46 @@ test("quick starts: unique, short chips, and every email is a draft the user sen
     assert.doesNotMatch(s.prompt, /\b(send it|has been sent|mark (it )?as entered)\b/i, s.id);
   }
 });
+
+test("the chat prompt carries the leveling rules and only the role's share of the data", async () => {
+  const { buildConstructionPrompt } = await import("./prompt.ts");
+  const role = (id: string) => construction.roles.find((r) => r.id === id)!;
+  const areas = (id: keyof NonNullable<typeof construction.roleAreas> | "office" | "dean" | "principal") =>
+    construction.roleAreas?.[id as "finance"] ?? ({ principal: ["general", "students", "supports", "finance"], dean: ["general", "students", "supports"], office: ["general", "students"] } as Record<string, string[]>)[id];
+  const build = (id: string) =>
+    buildConstructionPrompt({ role: role(id), can: (a) => areas(id as "office").includes(a), custom: "", page: "", brain: "", suggestPrefix: "Suggest for the brain:" });
+
+  const director = build("principal");
+  assert.match(director, /blank is never \$0/i);
+  assert.match(director, /READY TO PLUG, never ENTERED/);
+  assert.match(director, /The carry is the Director's call/);
+  assert.match(director, /"developmentBudget"/);
+  assert.doesNotMatch(director, /MACS|school|student/i);
+
+  const coordinator = build("office");
+  assert.doesNotMatch(coordinator, /"developmentBudget"|"base":/);
+  assert.match(coordinator, /RFI-102-014/);
+
+  const development = build("board");
+  assert.match(development, /"risks"/);
+  assert.doesNotMatch(development, /RFI-102-014"/);
+});
+
+test("demo replies respect the role", async () => {
+  const { buildConstructionDemo } = await import("./demo.ts");
+  const coordinator = buildConstructionDemo("Where are we against budget?", (a) => a === "general" || a === "students", "a model");
+  assert.match(coordinator, /isn't shared with this role/);
+  assert.doesNotMatch(coordinator, /\$\d/);
+  const director = buildConstructionDemo("Where are we against budget?", () => true, "a model");
+  assert.match(director, /Estimate vs Development budget/);
+});
+
+test("brain seed: sample facts only, valid areas, nothing marked entered or sent", async () => {
+  const { constructionBrainSeed } = await import("./brain-seed.ts");
+  const ids = construction.roles.map((r) => r.id as string);
+  for (const f of constructionBrainSeed) {
+    assert.ok(["general", "finance", "students", "supports"].includes(f.area), f.id);
+    assert.ok(ids.includes(f.author.role) || f.author.role === "agent", f.id);
+    assert.notEqual(f.source, "website", "no public-website facts for an invented company");
+  }
+});
