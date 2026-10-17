@@ -26,7 +26,7 @@ const form: BidForm = {
     { id: "site", section: "line", label: "Site", kind: "base" },
     { id: "all", section: "line", label: "Complete Scope - Combined", kind: "combined", covers: ["res", "site"] },
     { id: "alt-ve", section: "alternate", label: "DEDUCT - VE Board Type", direction: "deduct" },
-    { id: "inc-ceilings", section: "inclusion", label: "Exterior ceilings included in base bid?" },
+    { id: "inc-ceilings", section: "inclusion", label: "Exterior ceilings included in base bid?", scope: true },
   ],
 };
 
@@ -37,7 +37,7 @@ const subA: Proposal = {
   cells: { res: { kind: "price", amount: $("900,000"), evidence: "VENDOR CONFIRMED" }, site: { kind: "price", amount: $("100,000"), evidence: "VENDOR CONFIRMED" } },
   inclusions: { "inc-ceilings": "no" },
   adjustments: [
-    { type: "scope-plug", amount: $("60,000"), reason: "Exterior ceilings excluded; estimated" },
+    { type: "scope-plug", amount: $("60,000"), reason: "Exterior ceilings excluded; estimated", covers: "inc-ceilings" },
     { type: "allowance-adjustment", amount: $("20,000"), reason: "Allowance $30,000 to $50,000" },
     { type: "confirmed-deduct", amount: $("20,000"), reason: "Decorative feature deleted" },
     { type: "voluntary-deduct", amount: $("25,000"), reason: "VE offered, not accepted" },
@@ -175,4 +175,16 @@ test("money keeps its cents", () => {
   // Deducts are magnitudes: a negative line or adjustment is refused.
   const neg = levelBidder(form, { ...subA, id: "neg", adjustments: [{ type: "confirmed-deduct", amount: -100, reason: "wrong sign" }] });
   assert.equal(neg.plug, "HOLD");
+});
+
+test("excluded or unanswered scope blocks normalizing until it is priced", () => {
+  const noPlug = levelBidder(form, { ...subA, id: "a-noplug", adjustments: subA.adjustments!.filter((a) => a.type !== "scope-plug") });
+  assert.equal(noPlug.normalized, null);
+  assert.equal(noPlug.rankingEligible, false);
+  assert.match(noPlug.flags.join(" "), /Unpriced scope: Exterior ceilings included in base bid: excluded, no plug priced/);
+  const silent = levelBidder(form, { ...subB, id: "b-silent", inclusions: {} });
+  assert.equal(silent.normalized, null);
+  assert.equal(silent.rankingEligible, false);
+  // With the plug that covers it, Sub A normalizes again (the worked example above).
+  assert.equal(levelBidder(form, subA).normalized, $("1,060,000"));
 });

@@ -27,7 +27,7 @@ the first client profile and stays the proof that the core can be resold.
       tracking, and `NOT STATED` for anything missing.
    3. **Bid form builder.** (Done) Native BC Line Items / Alternates / Inclusions, built around the project,
       tested so every bidder maps without fake breakouts.
-   4. **Leveling sheet + BC plug table.** Companies across, form lines down, A-I deliverables, and a
+   4. **Leveling sheet + BC plug table.** (Done) Companies across, form lines down, A-I deliverables, and a
       `READY TO PLUG` table to type into BC (no import format exists; entry stays manual).
    5. **Bidder-specific clarifications.** Drafted per bidder from that bidder's actual gaps.
    6. **Coverage board and bid calendar.** Who owes what; bids due, addenda, RFIs; Pulse shows

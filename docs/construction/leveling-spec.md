@@ -120,6 +120,9 @@ Other bidders can raise a question but are never evidence of this bidder's scope
   result is `TRUE NORMALIZED DELTA: UNKNOWN PENDING CLARIFICATION`.
 
 `Normalized = quoted base + required adders + scope plugs + allowance adjustments - confirmed deducts`.
+A scope question on the form (as opposed to a commercial one like tax or bond) that a bidder leaves not
+stated, answers both ways, or excludes without a plug priced for it, is unpriced material scope: that
+bidder's normalized total is unknown and it is not eligible to rank until the gap is priced or answered.
 Every adjustment carries a reason and a source/status. Explain the spread: missing scope, bundles,
 quantities, assemblies, exclusions, allowances, alternates, commercial terms, unresolved basis.
 

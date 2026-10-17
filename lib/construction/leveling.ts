@@ -39,6 +39,11 @@ export interface InclusionRow {
   id: string;
   section: "inclusion";
   label: string;
+  /**
+   * A material scope question (soffits, unbalanced walls), not a commercial one (tax, bond). Left not
+   * stated, or excluded with no plug priced for it, it is unpriced scope: the bid cannot be normalized.
+   */
+  scope?: boolean;
 }
 
 export type FormRow = LineRow | AlternateRow | InclusionRow;
@@ -84,6 +89,8 @@ export interface Adjustment {
   reason: string;
   /** Voluntary deducts only count once accepted. Everything else counts when present. */
   accepted?: boolean;
+  /** The inclusion row this plug or add prices, when it fills an excluded scope item. */
+  covers?: string;
 }
 
 export interface Proposal {
@@ -234,17 +241,24 @@ export function levelBidder(form: BidForm, p: Proposal, history: Proposal[] = []
   const headline = p.vendorBase;
   const acceptedVoluntary = total("voluntary-deduct", true);
   const adjusted = headline + total("required-add") - total("confirmed-deduct") - acceptedVoluntary;
-  const openScope = p.openScope ?? [];
-  const normalized = openScope.length ? null : adjusted + total("scope-plug") + total("allowance-adjustment");
-  const memoVoluntaryDeducts = total("voluntary-deduct") - acceptedVoluntary;
-
-  for (const s of openScope) flags.push(`Unpriced scope: ${s}.`);
+  // Scope questions the bid has not settled: not stated, conflicting, or excluded with nothing priced for it.
+  const unresolvedScope: string[] = [];
   for (const row of form.rows) {
     if (row.section !== "inclusion") continue;
     const answer = p.inclusions?.[row.id] ?? "not-stated";
     if (answer === "not-stated") flags.push(`Not stated: ${row.label}`);
     if (answer === "conflicting") flags.push(`Conflicting language: ${row.label}`);
+    if (!row.scope) continue;
+    const priced = adj.some((a) => a.covers === row.id && (a.type === "scope-plug" || a.type === "required-add"));
+    if (answer === "no" && !priced) unresolvedScope.push(`${row.label.replace(/\?$/, "")}: excluded, no plug priced`);
+    if (answer === "not-stated" || answer === "conflicting") unresolvedScope.push(`${row.label.replace(/\?$/, "")}: ${answer.replace("-", " ")}`);
   }
+
+  const openScope = [...(p.openScope ?? []), ...unresolvedScope];
+  const normalized = openScope.length ? null : adjusted + total("scope-plug") + total("allowance-adjustment");
+  const memoVoluntaryDeducts = total("voluntary-deduct") - acceptedVoluntary;
+
+  for (const s of openScope) flags.push(`Unpriced scope: ${s}.`);
   for (const f of p.redFlags ?? []) flags.push(`Red flag: ${f}`);
 
   const sourceIntegrity: SourceIntegrity = p.sourceIssues?.length ? "SOURCE ISSUE" : variance !== 0 ? "MATH ISSUE" : "VERIFIED";

@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test \"lib/**/*.test.ts\"",
     "intake": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/intake.ts",
-    "bid-form": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/bid-form.ts"
+    "bid-form": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/bid-form.ts",
+    "level": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/level.ts"
   },
   "dependencies": {
     "lucide-react": "^1.57.0",

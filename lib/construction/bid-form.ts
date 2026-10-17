@@ -174,7 +174,7 @@ export function buildBidForm(o: BuildOptions): BuiltForm {
       const differ = new Set(answers).size > 1;
       const asked = (o.extraQuestions ?? []).includes(t);
       if (asked || (t.commercial && mentioned) || (!t.commercial && differ && mentioned)) {
-        inclusions.push({ id: t.id, section: "inclusion", label: t.question });
+        inclusions.push({ id: t.id, section: "inclusion", label: t.question, scope: !t.commercial });
       }
     }
     form = { project: o.project, round: o.round, pkg: o.pkg, rows: [...lines, ...alternates, ...inclusions] };
