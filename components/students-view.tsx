@@ -10,6 +10,7 @@ import { withDecisions } from "@/lib/tool-pages";
 import { SheetGrid, type SheetColumn, type SheetTone } from "./sheet-grid";
 import { ChartCard, Columns, LEVEL_COLORS, LevelRows, type LevelRow } from "./student-charts";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const gradeName = (g: Grade) => (g === "VPK" ? "VPK" : g === "K" ? "Kindergarten" : `Grade ${g}`);
 const levelTone = (l: FastLevel | null): SheetTone | undefined => (l === 1 ? "bad" : l === 2 ? "neutral" : undefined);
@@ -227,7 +228,7 @@ export function StudentsView({ dock }: { dock: ToolDock }) {
           <Backpack className="size-6" strokeWidth={1.75} />
         </span>
         <div className="min-w-0">
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Students</h1>
             <span className="inline-flex h-6 items-center gap-1.5 rounded-full px-2.5 text-[12px] text-secondary shadow-[0_0_0_1px_var(--line)]">

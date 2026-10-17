@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, CircleCheck, ClipboardPaste, Copy, Download, FileText, FlaskConical, LoaderCircle, Scale, TriangleAlert, Upload, X } from "lucide-react";
 import type { LevelingRun } from "@/lib/construction/run-leveling";
 import { Markdown } from "./markdown";
+import { profile } from "@/profiles";
 
 type Tab = "package" | "form" | "records";
 
@@ -106,7 +107,7 @@ export function LevelingView() {
     <div className="h-full overflow-y-auto bg-page">
       <div className="mx-auto w-full max-w-5xl px-4 pb-20 pt-6">
         <Link href="/" className="inline-flex items-center gap-1.5 text-[13px] text-muted hover:text-fg">
-          <ArrowLeft className="size-3.5" /> Workspace
+          <ArrowLeft className="size-3.5" /> {profile.workspaceName}
         </Link>
         <div className="mt-3 flex flex-wrap items-center gap-3">
           <Scale className="size-7 text-brand" strokeWidth={1.5} />

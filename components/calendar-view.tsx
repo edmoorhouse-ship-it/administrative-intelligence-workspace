@@ -26,6 +26,7 @@ import { DATA_AS_OF } from "@/lib/data-notice";
 import type { AdminRoleId } from "@/lib/roles";
 import { calendarAction, useShared } from "@/lib/shared-client";
 import { ToolChat, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const areaVar = (a: Area) => `var(--cal-${a})`;
@@ -204,7 +205,7 @@ export function CalendarView({ dock, role }: { dock: ToolDock; role: AdminRoleId
             <CalendarDays className="size-6" strokeWidth={1.75} />
           </span>
           <div>
-            <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+            <p className="text-[13px] text-muted">{profile.org}</p>
             <h1 className="font-serif text-[34px] font-[400] leading-tight tracking-[-0.01em] text-fg">{monthLabel}</h1>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { ArrowUpRight, CalendarDays, SearchCheck } from "lucide-react";
 import { SECTION_PROMPTS, SITE_CHECKED_ON, type SchoolSection } from "@/lib/school-sections";
 import { Composer } from "./composer";
 import { SectionIcon } from "./section-icon";
+import { profile } from "@/profiles";
 
 interface SectionViewProps {
   section: SchoolSection;
@@ -37,7 +38,7 @@ export function SectionView({ section, onAsk, composer }: SectionViewProps) {
           <SectionIcon id={section.id} className="size-6" />
         </span>
         <div className="min-w-0">
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">{section.title}</h1>
           <p className="mt-1 flex flex-wrap items-center gap-x-1.5 text-[13px] text-muted">
             From

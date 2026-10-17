@@ -22,6 +22,7 @@ import { ROLES, getRole, type AdminRoleId } from "@/lib/roles";
 import type { ToolId } from "@/lib/tools";
 import { logActivity, useShared } from "@/lib/shared-client";
 import { ToolChat, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 interface OnboardingViewProps {
   dock: ToolDock;
@@ -436,7 +437,7 @@ export function OnboardingView({ dock, customInstructions, onSaveInstructions, o
           <UserPlus className="size-6" strokeWidth={1.75} />
         </span>
         <div>
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Onboarding</h1>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, Lock, ShieldCheck } from "lucide-react";
 import { signIn, type Person, type SessionInfo } from "@/lib/shared-client";
 import { Mark } from "./mark";
+import { profile } from "@/profiles";
 
 const LAST_NAME_KEY = "macs.lastName.v1";
 const MIN = 8;
@@ -70,7 +71,7 @@ export function SignInScreen({ info, onSignedIn }: { info: SessionInfo; onSigned
       >
         <div className="flex flex-col items-center text-center">
           <Mark size={72} className="rounded-full shadow-[0_10px_30px_-10px_rgb(50_76_154/0.55)]" />
-          <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">Micanopy Area Cooperative School</p>
+          <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-brand">{profile.org}</p>
           <h1 className="mt-1.5 font-serif text-[28px] leading-tight">{setup ? "Set up the shared workspace" : "Sign in"}</h1>
           <p className="mt-2 text-[14px] leading-6 text-secondary">
             {setup

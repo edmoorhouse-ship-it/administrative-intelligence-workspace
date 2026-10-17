@@ -11,6 +11,7 @@ import type { ToolId } from "@/lib/tools";
 import { DEMO_CARDS, demoContext, PULSE_CARDS, withDecisions } from "@/lib/tool-pages";
 import { copyText } from "./clipboard";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const PILL: Record<ItemState, { label: string; cls: string }> = {
   pass: { label: "Passing", cls: "bg-[#e5f3ea] text-[#1f6b3a] dark:bg-[#1d3327] dark:text-[#9bd8ae]" },
@@ -422,7 +423,7 @@ export function DemoPageView({ id, dock, live }: { id: Extract<DemoPageId, ToolI
             <MessageSquare className="size-6" strokeWidth={1.75} />
           </span>
           <div>
-            <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+            <p className="text-[13px] text-muted">{profile.org}</p>
             <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">{page.title}</h1>
           </div>
         </div>
@@ -443,7 +444,7 @@ export function DemoPageView({ id, dock, live }: { id: Extract<DemoPageId, ToolI
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 pb-16 pt-8">
-      <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+      <p className="text-[13px] text-muted">{profile.org}</p>
       <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">{page.title}</h1>
       <p className="mt-1 text-[14px] text-muted">{page.subtitle}</p>
       <p className="mt-5 font-serif text-[17px] leading-7 text-fg">{page.intro}</p>

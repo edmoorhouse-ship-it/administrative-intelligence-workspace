@@ -44,6 +44,7 @@ import { SettingsDialog } from "./settings-dialog";
 import type { ToolDock } from "./tool-dock";
 import { isKnownTool, TOOL_TITLES, type ToolId } from "@/lib/tools";
 import { ChatActions, Sidebar, TitleInput } from "./sidebar";
+import { profile } from "@/profiles";
 
 type ApiMode = "unknown" | "live" | "demo";
 
@@ -120,23 +121,24 @@ export function Workspace({ me }: { me: Person }) {
   }, [settings.theme]);
 
   useEffect(() => {
-    document.title = activeChat
-      ? `${activeChat.title} - MACS Workspace`
+    const page = activeChat
+      ? activeChat.title
       : activeSection
-        ? `${activeSection.title} - MACS Workspace`
+        ? activeSection.title
         : pulseOpen
-          ? "Business pulse - MACS Workspace"
+          ? "Business pulse"
           : inboxOpen
-            ? "Inbox triage - MACS Workspace"
+            ? "Inbox triage"
             : taxOpen
-              ? "Tax checklist - MACS Workspace"
+              ? "Tax checklist"
               : restockOpen
-                ? "Restock - MACS Workspace"
+                ? "Restock"
                 : reimbOpen
-                  ? "Reimbursements - MACS Workspace"
+                  ? "Reimbursements"
                   : demoPage
-                    ? `${DEMO_PAGES[demoPage].title} - MACS Workspace`
-                    : "Micanopy Area Cooperative School - MACS Workspace";
+                    ? DEMO_PAGES[demoPage].title
+                    : profile.org;
+    document.title = `${page} - ${profile.workspaceName}`;
   }, [activeChat, activeSection, pulseOpen, inboxOpen, taxOpen, restockOpen, reimbOpen, demoPage]);
 
   useEffect(() => {
@@ -570,49 +572,49 @@ export function Workspace({ me }: { me: Person }) {
           </button>
           {demoPage && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">{DEMO_PAGES[demoPage].title}</span>
             </div>
           )}
           {reimbOpen && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">Reimbursements</span>
             </div>
           )}
           {restockOpen && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">Restock</span>
             </div>
           )}
           {taxOpen && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">Tax checklist</span>
             </div>
           )}
           {inboxOpen && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">Inbox triage</span>
             </div>
           )}
           {pulseOpen && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="text-fg">Business pulse</span>
             </div>
           )}
           {activeSection && (
             <div className="flex min-w-0 items-center gap-1.5 px-2 text-sm">
-              <span className="truncate text-muted">Micanopy Area Cooperative School</span>
+              <span className="truncate text-muted">{profile.org}</span>
               <span className="text-muted">/</span>
               <span className="flex items-center gap-1.5 text-fg">
                 <SectionIcon id={activeSection.id} className="size-3.5 text-brand" />
@@ -729,7 +731,7 @@ export function Workspace({ me }: { me: Person }) {
                 )}
                 <Composer {...composerProps} placeholder="Write a message…" focusKey={activeChat.id} />
                 <p className="pt-2 text-center text-xs text-muted">
-                  MACS Workspace is AI and can make mistakes. Figures are sample data — verify against official records.
+                  {profile.workspaceName} is AI and can make mistakes. Figures are sample data — verify against official records.
                 </p>
               </div>
             </div>
@@ -795,10 +797,8 @@ export function Workspace({ me }: { me: Person }) {
           <div key="home" className="anim-page-in min-h-0 flex-1 overflow-y-auto">
             <div className="mx-auto flex min-h-full w-full max-w-2xl flex-col items-stretch px-2 pb-24 pt-[max(2.5rem,calc(50dvh-20rem))] md:px-0">
               <div className="mb-7 flex flex-col items-center text-center">
-                <Mark size={120} className="rounded-full shadow-[0_10px_30px_-10px_rgb(50_76_154/0.55)]" />
-                <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-brand">
-                  Micanopy Area Cooperative School
-                </p>
+                <Mark size={120} className="rounded-full shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--brand)_55%,transparent)]" />
+                <p className="mt-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-brand">{profile.org}</p>
                 <h1 className="mt-1.5 font-serif text-[32px] font-[330] leading-tight tracking-[-0.01em] text-fg sm:text-[38px]">
                   {greetingFor()}, {role.greetingName}
                 </h1>
@@ -808,7 +808,7 @@ export function Workspace({ me }: { me: Person }) {
                 <PromptStarters onPick={pickStarter} disabled={isStreaming} />
               </div>
               <p className="mt-5 text-center text-xs text-muted">
-                Answers draw on an illustrative sample dataset for MACS, not school records.
+                Answers draw on an illustrative sample dataset for {profile.shortName}, not real records.
               </p>
             </div>
           </div>

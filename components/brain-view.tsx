@@ -7,6 +7,7 @@ import type { ActivityEntry } from "@/lib/activity";
 import { BRAIN_SEED, SOURCE_LABEL, type Fact, type FactSource } from "@/lib/brain";
 import { getRole, ROLES, type AdminRoleId } from "@/lib/roles";
 import { brainAction, changeTeam, fetchTeam, useShared, useTeam, type Account, type Person } from "@/lib/shared-client";
+import { profile } from "@/profiles";
 
 const EMPTY_FEED: ActivityEntry[] = [];
 
@@ -387,7 +388,7 @@ export function BrainView({ me }: { me: Person }) {
           <Brain className="size-6" strokeWidth={1.75} />
         </span>
         <div>
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Shared brain</h1>
         </div>
       </div>

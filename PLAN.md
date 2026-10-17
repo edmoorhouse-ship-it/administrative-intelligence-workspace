@@ -10,7 +10,7 @@ the first client profile and stays the proof that the core can be resold.
 
 ## Steps
 
-1. **Brand layer.** Move the name, logo, colors, tagline, and browser title into `profiles/<id>/profile.ts`.
+1. **Brand layer.** (Done) Move the name, logo, colors, tagline, and browser title into `profiles/<id>/profile.ts`.
    Pick the active profile with `WORKSPACE_PROFILE` in `.env.local`.
 2. **Roles and tools.** Roles, role areas, sidebar tools, and quick starts come from the profile.
 3. **Data and prompt.** The dataset, the "today" date, sections, and the system prompt's

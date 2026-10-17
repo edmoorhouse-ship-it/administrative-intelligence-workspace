@@ -21,6 +21,7 @@ import { logActivityOnce, useShared } from "@/lib/shared-client";
 import { copyText } from "./clipboard";
 import { SheetGrid, type SheetColumn, type SheetTone } from "./sheet-grid";
 import { ToolChat, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const STATUS_TONE: Record<RestockStatus, SheetTone | undefined> = { critical: "bad", warn: "neutral", good: "good", na: undefined };
 
@@ -120,7 +121,7 @@ export function RestockView({ dock }: { dock: ToolDock }) {
             <Package className="size-6" strokeWidth={1.75} />
           </span>
           <div>
-            <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+            <p className="text-[13px] text-muted">{profile.org}</p>
             <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Restock</h1>
           </div>
         </div>

@@ -17,6 +17,7 @@ import {
 } from "@/lib/vendors";
 import { withDecisions } from "@/lib/tool-pages";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const PILL: Record<AgreementStatus, string> = {
   active: "bg-[#e5f3ea] text-[#1f6b3a] dark:bg-[#1d3327] dark:text-[#9bd8ae]",
@@ -142,7 +143,7 @@ export function VendorsView({ dock }: { dock: ToolDock }) {
           <ScrollText className="size-6" strokeWidth={1.75} />
         </span>
         <div>
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Vendors</h1>
             <span className="inline-flex h-6 items-center gap-1.5 rounded-full px-2.5 text-[12px] text-secondary shadow-[0_0_0_1px_var(--line)]">

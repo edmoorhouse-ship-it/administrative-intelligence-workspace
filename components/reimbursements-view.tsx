@@ -10,6 +10,7 @@ import { logActivityOnce, useShared } from "@/lib/shared-client";
 import { copyText } from "./clipboard";
 import { SheetGrid, type SheetColumn, type SheetTone } from "./sheet-grid";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 const STATE_LABEL: Record<ClaimState, string> = { paid: "Received", waiting: "Waiting", overdue: "Overdue" };
 const STATE_TONE: Record<ClaimState, SheetTone | undefined> = { paid: "good", waiting: undefined, overdue: "bad" };
@@ -97,7 +98,7 @@ export function ReimbursementsView({ dock }: { dock: ToolDock }) {
             <Banknote className="size-6" strokeWidth={1.75} />
           </span>
           <div>
-            <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+            <p className="text-[13px] text-muted">{profile.org}</p>
             <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Reimbursements</h1>
           </div>
         </div>

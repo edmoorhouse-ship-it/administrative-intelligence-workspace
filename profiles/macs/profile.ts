@@ -1,0 +1,21 @@
+import badge from "@/public/brand/macs-manatees.png";
+import type { Profile } from "../types";
+
+/** Micanopy Area Cooperative School: the first client, and the workspace as it was built. */
+export const macs: Profile = {
+  id: "macs",
+  org: "Micanopy Area Cooperative School",
+  orgLines: ["Micanopy Area", "Cooperative School"],
+  shortName: "MACS",
+  workspaceName: "MACS Workspace",
+  kicker: "Leadership Workspace",
+  tagline: "Home of the Manatees",
+  description: "Administrative intelligence and operations workspace for the MACS leadership team.",
+  logo: { image: badge },
+  // Navy and gold sampled from the MACS Manatees badge.
+  colors: {
+    light: { brand: "#324c9a", accent: "#d8b820", send: "#324c9a", deep: "#324c9a" },
+    dark: { brand: "#8fa6e6", accent: "#e3c43a", send: "#3f5db5", deep: "#2b4185" },
+  },
+  features: { leveling: false },
+};

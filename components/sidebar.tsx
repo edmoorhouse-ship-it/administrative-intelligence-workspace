@@ -34,6 +34,7 @@ import {
   Sun,
   Trash,
   X,
+  Scale,
 } from "lucide-react";
 import { canOpenTool } from "@/lib/access";
 import { BRAIN_SEED, type Fact } from "@/lib/brain";
@@ -47,6 +48,8 @@ import type { Chat, ThemePreference } from "@/lib/types";
 import { Mark } from "./mark";
 import { Menu, MenuDivider, MenuItem, MenuLabel } from "./menu";
 import { SectionIcon } from "./section-icon";
+import { profile } from "@/profiles";
+import Link from "next/link";
 
 export interface SidebarProps {
   chats: Chat[];
@@ -122,7 +125,7 @@ function IconButton({ label, onClick, children, className = "" }: { label: strin
 function CollapsedRail({ onToggleCollapsed, onNewChat, onOpenSettings, role }: SidebarProps) {
   return (
     <div className="flex w-full flex-col items-center gap-1 py-2">
-      <button type="button" onClick={onToggleCollapsed} title="Micanopy Area Cooperative School" className="mb-1 rounded-full">
+      <button type="button" onClick={onToggleCollapsed} title={profile.org} className="mb-1 rounded-full">
         <Mark size={36} />
       </button>
       <IconButton label="Open sidebar" onClick={onToggleCollapsed}>
@@ -176,7 +179,7 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
   return (
     <div className="flex min-w-0 flex-1 flex-col">
       <div className="flex h-11 shrink-0 items-center justify-between pl-3.5 pr-2">
-        <span className="text-[13px] text-muted">Leadership Workspace</span>
+        <span className="text-[13px] text-muted">{profile.kicker}</span>
         <div className="flex items-center">
           <IconButton label={mobile ? "Close sidebar" : "Close sidebar"} onClick={mobile ? onCloseMobile : onToggleCollapsed}>
             {mobile ? <X className="size-[18px]" strokeWidth={1.75} /> : <PanelLeft className="size-[18px]" strokeWidth={1.75} />}
@@ -195,7 +198,7 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
       </div>
 
       <div className="px-2 pb-3">
-        <SchoolCard />
+        <BrandCard />
       </div>
 
       <div className="px-2">
@@ -238,6 +241,14 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
         {can("onboarding") && <NavRow icon={<UserPlus className="size-4" strokeWidth={1.75} />} label="Onboarding" active={activeDemo === "onboarding"} onClick={() => onOpenDemo("onboarding")} />}
         {can("security") && <NavRow icon={<ShieldCheck className="size-4" strokeWidth={1.75} />} label="Security check" active={activeDemo === "security"} onClick={() => onOpenDemo("security")} />}
         {can("mac") && <NavRow icon={<MessageSquare className="size-4" strokeWidth={1.75} />} label="Text Mac" active={activeDemo === "mac"} onClick={() => onOpenDemo("mac")} />}
+        {profile.features.leveling && (
+          <Link href="/leveling" className="flex h-8 w-full items-center gap-2 rounded-lg px-0.5 text-left text-sm text-secondary transition-colors hover:bg-hover hover:text-fg">
+            <span className="flex size-7 items-center justify-center">
+              <Scale className="size-4" strokeWidth={1.75} />
+            </span>
+            <span className="flex-1">Bid leveling</span>
+          </Link>
+        )}
       </nav>
 
       {searching && (
@@ -272,7 +283,7 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
                   aria-expanded={sectionsOpen}
                   className="flex w-full items-center gap-1 px-1.5 pb-1.5 pt-5 text-left text-[13px] text-muted hover:text-secondary"
                 >
-                  <span className="flex-1">Micanopy Area Cooperative School</span>
+                  <span className="flex-1">{profile.org}</span>
                   <ChevronDown className={`size-3.5 transition-transform ${sectionsOpen ? "" : "-rotate-90"}`} />
                 </button>
                 {sectionsOpen && (
@@ -326,19 +337,19 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
   );
 }
 
-/** Navy school card: makes it obvious the workspace is built for MACS. */
-function SchoolCard() {
+/** The brand card: makes it obvious who the workspace is built for. Name, tagline, and colors come from the profile. */
+function BrandCard() {
   return (
-    <div className="relative overflow-hidden rounded-xl bg-brand px-3 py-3 text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)]">
+    <div className="relative overflow-hidden rounded-xl bg-brand-deep px-3 py-3 text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.08)]">
       <div className="relative flex items-center gap-3">
         <Mark size={60} className="rounded-full ring-2 ring-white/80" />
         <div className="min-w-0">
           <p className="font-serif text-[17px] font-semibold leading-[1.15] tracking-[-0.01em]">
-            Micanopy Area
+            {profile.orgLines[0]}
             <br />
-            Cooperative School
+            {profile.orgLines[1]}
           </p>
-          <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">Home of the Manatees</p>
+          <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">{profile.tagline}</p>
         </div>
       </div>
       <div aria-hidden className="pointer-events-none absolute right-3 top-3 flex flex-col items-end gap-[3px]">

@@ -6,6 +6,7 @@ import { logActivity } from "@/lib/shared-client";
 import { TAX_CHECKLIST, TAX_NOTE } from "@/lib/tax-checklist";
 import { TAX_CARDS, taxContext, taxQuestionId, withDecisions } from "@/lib/tool-pages";
 import { DecisionDeck, ToolChat, useDecisions, type ToolDock } from "./tool-dock";
+import { profile } from "@/profiles";
 
 /** Checklist of questions for the school's accountant. Gives no dates or amounts of tax owed. */
 export function TaxChecklistView({ dock }: { dock: ToolDock }) {
@@ -21,7 +22,7 @@ export function TaxChecklistView({ dock }: { dock: ToolDock }) {
           <Receipt className="size-6" strokeWidth={1.75} />
         </span>
         <div>
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Tax &amp; filings checklist</h1>
         </div>
       </div>

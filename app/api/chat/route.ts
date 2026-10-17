@@ -9,6 +9,7 @@ import { getDoc } from "@/lib/server/store";
 import { buildSystemPrompt } from "@/lib/system-prompt";
 import { isKnownTool, MAX_TOOL_CONTEXT, TOOL_TITLES } from "@/lib/tools";
 import type { ChatRequestBody } from "@/lib/types";
+import { profile } from "@/profiles";
 
 const OPENROUTER_BASE_URL = (process.env.OPENROUTER_BASE_URL || "https://openrouter.ai/api/v1").replace(/\/$/, "");
 const OPENROUTER_URL = `${OPENROUTER_BASE_URL}/chat/completions`;
@@ -165,7 +166,7 @@ export async function POST(request: Request) {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
         "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "http://localhost:3000",
-        "X-Title": "MACS Admin Workspace",
+        "X-Title": profile.workspaceName,
       },
       body: JSON.stringify({
         model: model.id,

@@ -21,6 +21,7 @@
   --line: rgb(11 11 11 / 0.1);
   --line-strong: rgb(11 11 11 / 0.2);
   --brand: #324c9a;
+  --brand-deep: #324c9a;
   --gold: #d8b820;
   --send: #324c9a;
   --danger: #d03b3b;
@@ -45,6 +46,7 @@
   --line: rgb(255 255 255 / 0.1);
   --line-strong: rgb(255 255 255 / 0.2);
   --brand: #8fa6e6;
+  --brand-deep: #2b4185;
   --gold: #e3c43a;
   --send: #3f5db5;
   --danger: #e66767;
@@ -69,6 +71,7 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
   --color-gold: var(--gold);
   --color-send: var(--send);
   --color-danger: var(--danger);

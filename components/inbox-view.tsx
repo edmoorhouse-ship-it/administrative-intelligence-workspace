@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Inbox, ShieldAlert } from "lucide-react";
 import { buildInboxMessage } from "@/lib/inbox";
+import { profile } from "@/profiles";
 
 const MAX_PASTE = 19_000;
 
@@ -19,7 +20,7 @@ export function InboxView({ disabled, onTriage }: { disabled: boolean; onTriage:
           <Inbox className="size-6" strokeWidth={1.75} />
         </span>
         <div>
-          <p className="text-[13px] text-muted">Micanopy Area Cooperative School</p>
+          <p className="text-[13px] text-muted">{profile.org}</p>
           <h1 className="font-serif text-[32px] font-[400] leading-tight tracking-[-0.01em] text-fg">Inbox triage</h1>
         </div>
       </div>
