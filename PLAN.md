@@ -16,20 +16,23 @@ the first client profile and stays the proof that the core can be resold.
 3. **Data and prompt.** The dataset, the "today" date, sections, and the system prompt's
    business description come from the profile. The core keeps the rules (citations, sample-data labels).
 4. **Pulse and calendar.** Each profile supplies its own Pulse metrics and calendar sources.
-5. **Profile 1: construction / estimating** (the owner's day job: estimator at a commercial GC,
-   using Excel, Bluebeam, BuildingConnected, and Outlook). Built in this order, biggest time saver first:
-   1. **Bid leveler.** Drop in sub proposals (PDF or email text). The workspace pulls out base
-      price, alternates, inclusions, exclusions, and qualifications into one side-by-side sheet per
-      trade, flags scope gaps against the bid form, and suggests plugs for missing scope.
-   2. **Bid form builder.** Build the trade-by-trade bid form from the spec sections and drawing
-      list, so every sub prices the same scope.
-   3. **BuildingConnected export.** Write the leveled numbers out in the exact column layout
-      BuildingConnected takes, ready to paste or import.
-   4. **Sub quote chaser.** Who was invited, who has bid, who to follow up with, and drafted
-      follow-up emails (drafts only, never sent automatically).
-   5. **Bid calendar and Pulse.** Bid due dates, walkthroughs, pre-bid meetings, addenda received,
-      RFI deadlines; Pulse shows bids due this week, trades with fewer than three numbers, and open addenda.
-   Sample data only until the employer's data rules are known.
+5. **Profile 1: construction / preconstruction** (the owner's day job: preconstruction lead at a
+   multifamily developer-builder, pricing SD/DD/Permit/GMP with Excel, BuildingConnected, Outlook,
+   Bluebeam, and a takeoff tool). Rules: `docs/construction/leveling-spec.md`. Built in this order:
+   1. **Leveling engine.** Pure, tested code for the spec's math and rules: tie-outs, blank vs $0,
+      combined-or-split, unmapped dollars, headline / adjusted / normalized, status model, and the
+      nine acceptance tests. Everything else sits on top of it.
+   2. **Proposal intake.** Drop in proposal PDFs or email text; get a source-locked record (base,
+      breakouts, alternates, allowances, exclusions, terms, drawing basis), a math audit, revision
+      tracking, and `NOT STATED` for anything missing.
+   3. **Bid form builder.** Native BC Line Items / Alternates / Inclusions, built around the project,
+      tested so every bidder maps without fake breakouts.
+   4. **Leveling sheet + BC plug table.** Companies across, form lines down, A-I deliverables, and a
+      `READY TO PLUG` table to type into BC (no import format exists; entry stays manual).
+   5. **Bidder-specific clarifications.** Drafted per bidder from that bidder's actual gaps.
+   6. **Coverage board and bid calendar.** Who owes what; bids due, addenda, RFIs; Pulse shows
+      trades not yet leveled, open clarifications, and bids due this week.
+   Sample data only. No employer, project, vendor, or people names in the repo.
 6. **Profile 2: MACS.** The current school setup, unchanged in behavior.
 7. **Sources.** Spreadsheets and PDFs first (no accounts needed), then Notion, then
    Microsoft 365 / Outlook (employer accounts usually need IT approval).
