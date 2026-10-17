@@ -1,0 +1,496 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Tokens measured from claude.ai (light + dark, color version v2) on 2026-10-14.
+ * Names describe the role, not Claude's internal variable names.
+ * Brand accents (--brand navy, --gold) are sampled from the MACS Manatees badge.
+ */
+:root {
+  --page: #fcfcfb;
+  --sidebar: #fbfbf9;
+  --surface: #ffffff;
+  --fg: #0b0b0b;
+  --secondary: #52514e;
+  --muted: #898781;
+  --hover: #f0efec;
+  --active: #edece8;
+  --track: #f6f6f4;
+  --bubble: rgb(11 11 11 / 0.05);
+  --line: rgb(11 11 11 / 0.1);
+  --line-strong: rgb(11 11 11 / 0.2);
+  --brand: #324c9a;
+  --gold: #d8b820;
+  --send: #324c9a;
+  --danger: #d03b3b;
+  --code-surface: rgb(255 255 255 / 0.6);
+  --composer-shadow: 0 4px 20px 0 rgb(0 0 0 / 0.035), 0 0 0 1px var(--line);
+  --composer-shadow-focus: 0 4px 20px 0 rgb(0 0 0 / 0.075), 0 0 0 1px var(--line-strong);
+  --menu-shadow: 0 0 0 1px var(--line), 0 8px 24px -4px rgb(0 0 0 / 0.1);
+  color-scheme: light;
+}
+
+.dark {
+  --page: #151515;
+  --sidebar: #111111;
+  --surface: #20201f;
+  --fg: #f0efec;
+  --secondary: #c3c2b7;
+  --muted: #898781;
+  --hover: rgb(255 255 255 / 0.06);
+  --active: rgb(255 255 255 / 0.1);
+  --track: rgb(255 255 255 / 0.05);
+  --bubble: rgb(255 255 255 / 0.07);
+  --line: rgb(255 255 255 / 0.1);
+  --line-strong: rgb(255 255 255 / 0.2);
+  --brand: #8fa6e6;
+  --gold: #e3c43a;
+  --send: #3f5db5;
+  --danger: #e66767;
+  --code-surface: rgb(0 0 0 / 0.25);
+  --composer-shadow: 0 4px 20px 0 rgb(0 0 0 / 0.075), 0 0 0 1px var(--line);
+  --composer-shadow-focus: 0 4px 20px 0 rgb(0 0 0 / 0.12), 0 0 0 1px var(--line-strong);
+  --menu-shadow: 0 0 0 1px var(--line), 0 8px 24px -4px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-page: var(--page);
+  --color-sidebar: var(--sidebar);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-hover: var(--hover);
+  --color-active: var(--active);
+  --color-track: var(--track);
+  --color-bubble: var(--bubble);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-gold: var(--gold);
+  --color-send: var(--send);
+  --color-danger: var(--danger);
+  /* Claude's own fallback stack for its sans; the serif is the closest open match. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--page);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/* ---------- Composer ---------- */
+
+.composer-shell {
+  box-shadow: var(--composer-shadow);
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.composer-shell:hover,
+.composer-shell:focus-within {
+  box-shadow: var(--composer-shadow-focus);
+}
+
+/* ---------- Assistant markdown ---------- */
+
+.md {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--fg);
+  overflow-wrap: anywhere;
+}
+.md > :first-child {
+  margin-top: 0;
+}
+.md > :last-child {
+  margin-bottom: 0;
+}
+.md p {
+  margin: 0 0 12px;
+  padding-inline-start: 4px;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 20px 0 8px;
+  padding-inline-start: 4px;
+}
+.md h1 {
+  font-size: 22px;
+}
+.md h2 {
+  font-size: 19px;
+}
+.md h3 {
+  font-size: 17px;
+}
+.md h4 {
+  font-size: 16px;
+}
+.md ul,
+.md ol {
+  margin: 0 0 12px;
+  padding-inline-start: 26px;
+}
+.md ul {
+  list-style: disc;
+}
+.md ol {
+  list-style: decimal;
+}
+.md li {
+  padding-inline-start: 8px;
+  margin: 4px 0;
+}
+.md li::marker {
+  color: var(--secondary);
+}
+.md li > p {
+  margin: 0;
+  padding: 0;
+}
+.md strong {
+  font-weight: 600;
+}
+.md a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.md a:hover {
+  text-decoration-color: currentColor;
+}
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 20px 0;
+}
+.md blockquote {
+  margin: 0 0 12px;
+  padding: 2px 0 2px 14px;
+  border-inline-start: 3px solid var(--line-strong);
+  color: var(--secondary);
+}
+.md blockquote p {
+  margin: 0 0 6px;
+  padding: 0;
+}
+.md blockquote p:last-child {
+  margin: 0;
+}
+.md :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--danger);
+  background: var(--bubble);
+  border: 0.5px solid var(--line);
+  border-radius: 0.4rem;
+  padding: 1px 4px;
+}
+.md table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow-wrap: normal;
+  font-variant-numeric: tabular-nums;
+}
+.md th,
+.md td {
+  padding: 7px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.md th {
+  font-weight: 500;
+  background: var(--bubble);
+}
+.md td {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Motion (timings measured from claude.ai) ---------- */
+
+/* User message: spring in from the right edge. */
+@keyframes um-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.anim-um-enter {
+  transform-origin: 100% center;
+  animation: um-enter 450ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+/* Assistant message block: fade up 10px when its first text arrives. */
+@keyframes message-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.anim-message-in {
+  animation: message-fade-up 1100ms cubic-bezier(0.2, 1.1, 0.3, 1) both;
+}
+
+/* Each newly streamed word fades in. */
+@keyframes word-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.word-in {
+  animation: word-in 400ms linear both;
+}
+
+/* Status word ("Reviewing…") with a light band sweeping across it. */
+@keyframes shimmer-band {
+  0%,
+  15% {
+    background-position: 100% 0;
+    animation-timing-function: cubic-bezier(0.714, 0.121, 0.211, 0.888);
+  }
+  85%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+.shimmer-text {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--secondary) 0%,
+    var(--secondary) 40%,
+    var(--fg) 50%,
+    var(--secondary) 60%,
+    var(--secondary) 100%
+  );
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer-band 3s infinite;
+}
+
+/* Working badge: 2s breathing, with a gold ring stepping around it 9 frames per 810ms. */
+@keyframes mark-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes mark-step {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mark-working > img {
+  animation: mark-pulse 2s ease-in-out infinite;
+}
+.mark-ring {
+  border: 2px solid transparent;
+  border-top-color: var(--gold);
+  border-right-color: var(--gold);
+  animation: mark-step 810ms steps(9, end) infinite;
+}
+
+/* Action row after a reply finishes. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+.anim-action-in {
+  animation: fade-in 120ms ease-out both;
+}
+@keyframes settle-down {
+  from {
+    transform: translateY(-26px);
+  }
+}
+.anim-settle {
+  animation: settle-down 300ms cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+/* View switch (home ↔ chat). */
+.anim-page-in {
+  animation: fade-in 300ms ease-in-out both;
+}
+
+/* Menus and dialogs. */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(-2px);
+  }
+}
+.anim-pop-in {
+  animation: pop-in 140ms ease-out both;
+}
+
+/* Spreadsheet grid: Excel's gridline gray, accent green, and built-in conditional format colors. */
+:root {
+  --sheet-grid: #e1e1e1;
+  --sheet-head: #f5f5f5;
+  --sheet-head-sel: #e3ede6;
+  --sheet-accent: #107c41;
+  --sheet-bad-bg: #ffc7ce;
+  --sheet-bad-fg: #9c0006;
+  --sheet-neutral-bg: #ffeb9c;
+  --sheet-neutral-fg: #9c5700;
+  --sheet-good-bg: #c6efce;
+  --sheet-good-fg: #006100;
+}
+.dark {
+  --sheet-grid: #383838;
+  --sheet-head: #242424;
+  --sheet-head-sel: #22352a;
+  --sheet-accent: #4cb877;
+  --sheet-bad-bg: #4a1e24;
+  --sheet-bad-fg: #ffb3bd;
+  --sheet-neutral-bg: #463a14;
+  --sheet-neutral-fg: #f2d675;
+  --sheet-good-bg: #1d3a26;
+  --sheet-good-fg: #9bd8ae;
+}
+
+/* Calendar: one color per area. Each is readable on its own surface in both modes. */
+:root {
+  --cal-general: #324c9a;
+  --cal-finance: #9a6b00;
+  --cal-students: #2a78d6;
+  --cal-supports: #8e4fc4;
+}
+.dark {
+  --cal-general: #8ea4ec;
+  --cal-finance: #e8c35a;
+  --cal-students: #6aa8f0;
+  --cal-supports: #c08ef0;
+}
+
+/* Charts: an ordinal blue ramp for FAST levels (validated with the dataviz skill's checker in
+   both modes), the brand navy for single-series bars, and the reserved critical status color. */
+:root {
+  --viz-l1: #86b6ef;
+  --viz-l2: #5598e7;
+  --viz-l3: #2a78d6;
+  --viz-l4: #1c5cab;
+  --viz-l5: #104281;
+  --viz-bar: #324c9a;
+  --viz-critical: #d03b3b;
+  --viz-grid: #e1e0d9;
+  --viz-axis: #c3c2b7;
+}
+.dark {
+  --viz-l1: #184f95;
+  --viz-l2: #256abf;
+  --viz-l3: #3987e5;
+  --viz-l4: #6da7ec;
+  --viz-l5: #9ec5f4;
+  --viz-bar: #6f8fdc;
+  --viz-critical: #d03b3b;
+  --viz-grid: #2c2c2a;
+  --viz-axis: #383835;
+}
+
+/* Typing indicator in the Text Mac thread: three dots that rise in turn. */
+@keyframes typing-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+.typing-dot {
+  animation: typing-dot 1.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-dot,
+  .anim-um-enter,
+  .anim-message-in,
+  .word-in,
+  .anim-action-in,
+  .anim-settle,
+  .anim-page-in,
+  .anim-pop-in,
+  .mark-working > img,
+  .mark-ring,
+  .shimmer-text {
+    animation: none;
+  }
+  .shimmer-text {
+    color: var(--secondary);
+    background: none;
+  }
+}
+
+/* Manny, the assistant in the corner: a slow bob, and notes that rise in from the corner. */
+@keyframes manny-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+.anim-manny-bob {
+  animation: manny-bob 3.2s ease-in-out infinite;
+}
+@keyframes manny-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}
+.anim-manny-rise {
+  transform-origin: bottom right;
+  animation: manny-rise 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-manny-bob,
+  .anim-manny-rise {
+    animation: none;
+  }
+}

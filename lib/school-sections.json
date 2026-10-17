@@ -1,0 +1,786 @@
+[
+  {
+    "id": "about",
+    "title": "About MACS",
+    "url": "https://www.macschool.us/about-macs",
+    "summary": "MACS is a free public charter school in historic Micanopy, Florida, about 20 minutes south of Gainesville, with the motto \"Learners Today, Leaders Tomorrow.\" Its mission, written into its contract with the School Board of Alachua County, rests on small student-staff ratios, using the Town of Micanopy as a classroom, individual learning plans, and close family involvement. The school is led by Director Brenda Maynard and governed by a five-member Board of Directors.",
+    "facts": [
+      "Free public charter school in Micanopy, FL, about 20 minutes south of Gainesville",
+      "Grades: About Us says Pre-K through 6th (7th-8th 'in coming years'); homepage says Pre-K through 7th",
+      "Motto: \"Learners Today, Leaders Tomorrow\"",
+      "Mission pillars: small student-staff ratio, Town of Micanopy as the classroom, performance-based curriculum with individual learning plans, family involvement",
+      "Free before-school care (Morning Mile, Homework Help, morning clubs) and free VPK",
+      "Daily PE incl. N.A.S.P. Archery and RadKids; weekly music and art; daily recess",
+      "Breakfast and lunch cooked onsite through the National School Lunch Program",
+      "Board terms: Joshua Finch, Sandra Johnson, Jim Walkup to June 2028; Cary Gallop, Lee Deaderick to June 2027",
+      "Director Brenda Maynard (maynardb@macschool.us); main phone (352) 466-0990",
+      "Governing documents posted: Charter 2025-2036, Board Policy 2025, Board Bylaws 2025"
+    ],
+    "links": [
+      {
+        "label": "Mission statement",
+        "url": "https://www.macschool.us/mission-statement"
+      },
+      {
+        "label": "Governance / Board of Directors",
+        "url": "https://www.macschool.us/board-of-directors"
+      },
+      {
+        "label": "Board Bylaws (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/board_bylaws_2025.pdf"
+      },
+      {
+        "label": "Board Member Application (DOCX)",
+        "url": "https://files.smartsites.parentsquare.com/10331/board_member_application.docx"
+      },
+      {
+        "label": "Board Policy 2025 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/board_policy__2025.pdf"
+      },
+      {
+        "label": "MACS Charter 2025-2036 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/macs_charter_renewal_2025-2035.pdf"
+      },
+      {
+        "label": "Board agenda 10/12/26 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/agenda_101226_.pdf"
+      },
+      {
+        "label": "Staff Directory",
+        "url": "https://www.macschool.us/staff-directory"
+      }
+    ],
+    "notes": "Grade range differs across pages (Pre-K-6 on About Us, Pre-K-7 on the homepage). The charter link says 2025-2036 but the file is named 2025-2035. 'Our story' is an image with no text."
+  },
+  {
+    "id": "enrollment",
+    "title": "Enrollment",
+    "url": "https://www.macschool.us/86498_1",
+    "summary": "Enrollment is by online application through Lotterease, with a lottery when applicants exceed open seats; the 2026-27 lottery was held March 12, 2026 and the school still lists itself as accepting applications. Selected families confirm attendance, turn in required documents within 10 days, and complete Alachua County's New Student Online Enrollment in Skyward. VPK families also need a Certificate of Eligibility from the Early Learning Coalition.",
+    "facts": [
+      "2026-27 lottery held March 12, 2026; page says applications are still being accepted",
+      "Once selected: confirm attendance and submit required documents within 10 days",
+      "Required documents: 2 proofs of residence, Florida DH680 shot record, physical within 1 year, birth certificate; VPK adds Certificate of Eligibility",
+      "Skyward New Student Online Enrollment opened May 1, 2026; choose Charter School = Yes, then MACS",
+      "Preference order: children/grandchildren of staff or board; siblings; Micanopy residents and children of alumni; Alachua County residents",
+      "Class size caps: 18 in K-3 and 22 in grades 4-7, two classes per grade",
+      "Capacity: VPK 20; K-3rd 36 each; 4th-5th 44 each; two VPK classes offered for 2026-27",
+      "Returning families re-enroll via an intent form sent each February",
+      "Tours: Tue/Wed/Thu at 2:30 pm, one visit per family",
+      "Contacts: Pam Bowman for documents (bowmanp@macschool.us); Asst. Director Kelly Minton for tours (mintonk@macschool.us)"
+    ],
+    "links": [
+      {
+        "label": "Lotterease application",
+        "url": "https://app.lotterease.com/cgi-bin/sl_V2_1.pl?account_id=330&nav=Parents_Registration"
+      },
+      {
+        "label": "Open Enrollment Policy (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/macs_open_enrollment_policy_081423.pdf"
+      },
+      {
+        "label": "Enrollment Information and Policy",
+        "url": "https://www.macschool.us/enrollment-information-and-policy"
+      },
+      {
+        "label": "Skyward New Student Online Enrollment",
+        "url": "https://skyward.iscorp.com/scripts/wsisa.dll/WService=wsedualachuafl/skyenroll.w"
+      },
+      {
+        "label": "NSOE Parent Guide (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/new_student_online_enrollment__parents.pdf"
+      },
+      {
+        "label": "VPK Family Portal (Early Learning Coalition)",
+        "url": "https://familyservices.floridaearlylearning.com/"
+      },
+      {
+        "label": "VPK Extended Day registration",
+        "url": "https://forms.gle/msxXetVqp15HqyHe9"
+      },
+      {
+        "label": "Student supply list",
+        "url": "https://www.macschool.us/school-1"
+      }
+    ],
+    "notes": "Tour contact differs: Kelly Minton on Enrollment Home, 'Mrs. McKee' (no email) on the policy page. The capacity table covers VPK-5th only, and the Extended Day fee isn't listed."
+  },
+  {
+    "id": "academics",
+    "title": "Academics",
+    "url": "https://www.macschool.us/academics",
+    "summary": "MACS describes its learning model as inquiry-based with hands-on experiences. Students are graded E/S/N/U in K-2 and A-F with plus/minus in grades 3-6, and state progress monitoring uses the Florida Assessment of Student Thinking (FAST), with parent letters and a Star Assessment guide posted for families.",
+    "facts": [
+      "K-2 scale: E 91-100, S+ 85-90, S 75-84, S- 70-74, N 60-69, U 59 and below",
+      "Grades 3-6: A 91-100, A- 90, B+ 88-89, B 81-87, B- 80",
+      "Grades 3-6: C+ 78-79, C 71-77, C- 70, D+ 68-69, D 60-67, F 59 and below",
+      "State testing is the Florida Assessment of Student Thinking (FAST); a 3rd-6th grade parent notification is posted",
+      "Also posted: Star Assessment guide, 2025 FAST parent letter (grades 3-5), 2025 science letter to parents",
+      "Learning model described as inquiry-based with hands-on experiences",
+      "Academics menu also links a Middle School PE waiver page and supply lists"
+    ],
+    "links": [
+      {
+        "label": "FAST / standardized testing",
+        "url": "https://www.macschool.us/fast"
+      },
+      {
+        "label": "Grading scale",
+        "url": "https://www.macschool.us/grading-scale"
+      },
+      {
+        "label": "FAST parent letter grades 3-5, 2025 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/fast_parent_letter_3-5_2025docx_1.pdf"
+      },
+      {
+        "label": "3rd-6th FAST parent notification (DOCX)",
+        "url": "https://files.smartsites.parentsquare.com/10331/3rd-6th_fast_test_parent_notification.docx"
+      },
+      {
+        "label": "Star Assessment guide (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/576499_star_assessment_guide_qa_2.pdf"
+      },
+      {
+        "label": "Science letter to parents, 2025 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/science_letter_to_parents_2025docx.pdf"
+      },
+      {
+        "label": "Middle School PE waiver",
+        "url": "https://www.macschool.us/physical-education-waiver"
+      },
+      {
+        "label": "Supply lists",
+        "url": "https://www.macschool.us/school-supplies"
+      }
+    ],
+    "notes": "The VPK, Elementary and Middle School program pages are empty, and the grading scale stops at 6th grade."
+  },
+  {
+    "id": "student-life",
+    "title": "Student Life",
+    "url": "https://www.macschool.us/studentlife",
+    "summary": "Beyond the school day, MACS hosts 4-H, Girl Scouts, Soccer Shots and a Robotics Club, along with a Spanish Club and a House system. Several activities have their own schedules, fees and contacts.",
+    "facts": [
+      "Micanopy Friendship 4-H: $20 per member dues (club scholarships available); meets Mondays per MACS calendar",
+      "Girl Scouts: 2nd, 3rd and 4th Thursdays, 6-7 pm, Micanopy Christian Fellowship (4909 SE 165 Ave); Kindergarten and up",
+      "Girl Scouts contact: Cathy Carr, 352-213-4883",
+      "Soccer Shots: ages 4+, Wednesdays 1:15 PM at Micanopy Ball Park; $160 plus $20 yearly registration (includes jersey)",
+      "Soccer Shots contact: Josh Hamilton, 352-207-2031",
+      "Robotics Club (4th-7th grade) meets Tue/Thu 2:30-4:00 PM on the school calendar; the 2nd-3rd grade club ended Oct 13, 2026",
+      "Spanish Club, House system and Robotics are shown on the clubs page with images only"
+    ],
+    "links": [
+      {
+        "label": "Clubs and Activities",
+        "url": "https://www.macschool.us/clubs-and-activities"
+      },
+      {
+        "label": "Soccer Shots registration",
+        "url": "https://www.soccershots.org/northcentralflorida"
+      },
+      {
+        "label": "Girl Scouts of Gateway Council",
+        "url": "https://www.girlscouts-gateway.org/"
+      },
+      {
+        "label": "House crest description (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/macs_house_crest_description.pdf"
+      },
+      {
+        "label": "Artsonia student art gallery",
+        "url": "https://www.artsonia.com/media/slideshows/?school=65242"
+      },
+      {
+        "label": "Digital Learning Resources",
+        "url": "https://www.macschool.us/digital-learning-resources"
+      },
+      {
+        "label": "Class Pages",
+        "url": "https://www.macschool.us/class-pages"
+      }
+    ],
+    "notes": "The Student Experiences page is empty, and the Robotics entry on Clubs and Activities reads 'undefined'."
+  },
+  {
+    "id": "community",
+    "title": "Community",
+    "url": "https://www.macschool.us/88764_1",
+    "summary": "MACS is rooted in the town of Micanopy, which its mission treats as a classroom, and its website features local business partners such as Builders Air, Blue Wave Afterschool, Central Florida Drywall and Orkin. Family events like S.T.E.A.M. Night, talent shows, Founder's Day and the Color Run bring the community onto campus.",
+    "facts": [
+      "Business Partners page shows 7 logos; one has no link and the Orkin (Gainesville) link appears twice",
+      "Partner links point to buildersair.com, bluewaveafterschool.com, centralfloridadrywall.com, orkin.com and trustcornerstone.com",
+      "Blue Wave Afterschool, a listed partner, runs the on-campus after-school program",
+      "Mission includes using the Town of Micanopy as a classroom",
+      "PTO family events named on About Us: S.T.E.A.M. Night, Talent Shows, Founder's Day, Color Run"
+    ],
+    "links": [
+      {
+        "label": "Business Partners",
+        "url": "https://www.macschool.us/business-partners"
+      },
+      {
+        "label": "Builders Air",
+        "url": "https://www.buildersair.com/"
+      },
+      {
+        "label": "Blue Wave Afterschool",
+        "url": "http://www.bluewaveafterschool.com/"
+      },
+      {
+        "label": "Central Florida Drywall",
+        "url": "https://www.centralfloridadrywall.com/"
+      },
+      {
+        "label": "Orkin Gainesville",
+        "url": "https://www.orkin.com/locations/florida-fl/gainesville-pest-control/branch-920"
+      },
+      {
+        "label": "trustcornerstone.com",
+        "url": "https://trustcornerstone.com/"
+      },
+      {
+        "label": "MACS on Facebook",
+        "url": "https://www.facebook.com/MicanopyAreaSchool"
+      }
+    ],
+    "notes": "Community Home is empty. Business Partners shows logos without names; the Orkin link appears twice and one logo has no link."
+  },
+  {
+    "id": "support",
+    "title": "Support",
+    "url": "https://www.macschool.us/88765_1",
+    "summary": "Support is a menu leading to PTO, donation, volunteer, Barn Bash and Brick Campaign pages. Every family is expected to volunteer 8 hours a year, and fundraising centers on a capital campaign for an additional classroom building, including the Barn Bash gala and engraved bricks for the Unity Park legacy sidewalk.",
+    "facts": [
+      "All families are required to volunteer 8 hours each year",
+      "Volunteer questions: Ms. Bain, front office (bainc@macschool.us)",
+      "Barn Bash: annual gala at The Barn @ Lakeside Ranch, 5:30-9:30 pm, with cocktail hour, catered dinner and silent auction",
+      "Barn Bash proceeds support the capital campaign for an additional classroom building",
+      "Brick Campaign: buy a brick for the Unity Park legacy sidewalk; order deadline Oct 9, 2026",
+      "PTO pages cover PTO improvements, 2024-25 meeting agendas/minutes and a PTO home page",
+      "Next PTO meeting on the calendar: Oct 19, 2026, 6-7 PM",
+      "Otis Spunkmeyer fundraiser raised $9,000 (MACS Matters, Oct 8, 2026)"
+    ],
+    "links": [
+      {
+        "label": "Volunteer information form",
+        "url": "https://forms.gle/fLcJYAv1HCzyiVnZ7"
+      },
+      {
+        "label": "Capital Campaign donation (ParentSquare)",
+        "url": "https://www.parentsquare.com/feeds/67487591"
+      },
+      {
+        "label": "Barn Bash tickets (ParentSquare)",
+        "url": "https://www.parentsquare.com/feeds/67363717"
+      },
+      {
+        "label": "Barn Bash",
+        "url": "https://www.macschool.us/barn-bash"
+      },
+      {
+        "label": "Brick Campaign",
+        "url": "https://www.macschool.us/brick-campaign"
+      },
+      {
+        "label": "PTO Improvements",
+        "url": "https://www.macschool.us/pto-improvements"
+      },
+      {
+        "label": "PTO agendas and minutes 2024-25",
+        "url": "https://www.macschool.us/pto-meeting-agendas-and-minutes-202"
+      },
+      {
+        "label": "PTO Home",
+        "url": "https://www.macschool.us/195546_3"
+      }
+    ],
+    "notes": "The Donate page (/do) is empty. Barn Bash reads 'Saturday, March 7th, 2025', which was a Friday. The brick order deadline (Oct 9, 2026) has passed."
+  },
+  {
+    "id": "parents",
+    "title": "Parents",
+    "url": "https://www.macschool.us/parents",
+    "summary": "The Parents section gathers handbooks, policies and family portals (ParentSquare, Skyward Family Access, SchoolCafe, FortifyFL). Student Services explains how MACS checks progress every six weeks and moves students who need help through intervention toward a possible IEP or 504 evaluation.",
+    "facts": [
+      "Teachers assess students against grade-level expectations every six weeks",
+      "Students below benchmark get an intervention plan; an Education Planning Meeting follows if progress lags",
+      "At least 40 hours of research-based intervention data are required before a school psychologist evaluation",
+      "Further evaluation needs parent consent; the EPT team then decides IEP or 504 eligibility",
+      "IEPs cover 13 qualifying special-education conditions (IDEA); 504 plans fall under the ADA",
+      "Current Parent/Student Handbook is 2025 R1; Student Code of Conduct is labeled 25-26",
+      "Parent portals: SchoolCafe (meals), Skyward Family Access/Skylert, My Portal, FortifyFL tip line",
+      "Alachua County Crisis Center family and couples counseling flyer posted on Parent Resources"
+    ],
+    "links": [
+      {
+        "label": "Parent/Student Handbook 2025 R1 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/parent_student_handbook_2025_r1.pdf"
+      },
+      {
+        "label": "Student Code of Conduct 25-26",
+        "url": "https://macschool.us/student-code-of-conduct-24-25"
+      },
+      {
+        "label": "Bullying and Harassment Policy (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/macs_bullying_and_harassment_policy_r_1.pdf"
+      },
+      {
+        "label": "Student Withdrawal Form (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/student_withdrawl_form_1.pdf"
+      },
+      {
+        "label": "Skyward Family Access / Skylert setup (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/setting_up_skyward_family_access_and_mobile_app.pdf"
+      },
+      {
+        "label": "ParentSquare sign-in",
+        "url": "https://www.parentsquare.com/signin"
+      },
+      {
+        "label": "FortifyFL",
+        "url": "https://getfortifyfl.com/"
+      },
+      {
+        "label": "My Portal",
+        "url": "https://acps.gg4l.com/account/default/login-form"
+      }
+    ],
+    "notes": "Important Links still points to a 2021 handbook while other pages list the 2025 R1 handbook. The Code of Conduct is labeled 25-26 but links to a 24-25 page."
+  },
+  {
+    "id": "calendar",
+    "title": "Calendar",
+    "url": "https://www.macschool.us/calendar-26-27",
+    "summary": "The 2026-27 school calendar is posted as an image and a PDF, so year-level dates such as the first and last day and breaks are not available as page text. The page's event list and the full online calendar show near-term dates: no school Oct 9, the end of the first nine weeks Oct 13, a student holiday Oct 16, and report cards Oct 22, 2026.",
+    "facts": [
+      "No school Fri Oct 9, 2026 (UF Homecoming holiday)",
+      "First nine weeks ended Tue Oct 13, 2026 (45 days)",
+      "Student holiday / teacher workday Fri Oct 16, 2026",
+      "Report cards available in Skyward Family Access Thu Oct 22, 2026",
+      "Board meetings appear on the online calendar at 6 pm (e.g., Oct 12, 2026)",
+      "Online calendar offers month, week, day and list views plus print, email and subscribe"
+    ],
+    "links": [
+      {
+        "label": "2026-27 school calendar (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/macs_26-27_calendar_1.pdf"
+      },
+      {
+        "label": "2026-27 calendar image (PNG)",
+        "url": "https://files.smartsites.parentsquare.com/10331/MACS%20Calendar%202026-2027_1784562388.png"
+      },
+      {
+        "label": "Full online calendar",
+        "url": "https://www.macschool.us/page/page_calendar?calID=141773"
+      },
+      {
+        "label": "Accessible calendar view",
+        "url": "https://www.macschool.us/page/page_calendar?calID=141773&accessibility=enabled"
+      }
+    ],
+    "notes": "Year-level dates (first and last day, breaks, early release) are only in the calendar image and PDF, not page text, and the image's alt text says 2016-17.",
+    "events": [
+      {
+        "date": "2026-10-09",
+        "title": "Holiday - UF Homecoming (No School)",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-13",
+        "title": "End of First Nine Weeks (45 Days)",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-16",
+        "title": "Student Holiday - Teacher Workday",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-22",
+        "title": "Report Cards Available in Family Access",
+        "time": "All Day"
+      }
+    ]
+  },
+  {
+    "id": "nutrition",
+    "title": "Nutrition",
+    "url": "https://www.macschool.us/home-2",
+    "summary": "MACS serves breakfast and lunch made fresh daily as part of the National School Lunch Program. Families use SchoolCafe to view menus, apply for free or reduced meals, check balances and pay, and meals must be paid in advance. Medical meal modifications go to Nutrition Services Coordinator Pam Bowman.",
+    "facts": [
+      "Lunch: $4.30 full pay, $0.40 reduced, $5.00 adult",
+      "Breakfast: $2.65 full pay, $0.30 reduced, $3.25 adult",
+      "School policy requires meals to be paid in advance; SchoolCafe offers auto-pay",
+      "SchoolCafe handles menus, free/reduced applications, payments and balances",
+      "Free/reduced household application available in English and Spanish",
+      "Medical meal modifications: submit the Meal Modification Medical Statement to Pam Bowman, Nutrition Services Coordinator",
+      "Wellness Policy (2026) and a Wellness Policy assessment are posted",
+      "Wellness policy ties good nutrition and physical activity to students' ability to learn"
+    ],
+    "links": [
+      {
+        "label": "SchoolCafe",
+        "url": "https://www.schoolcafe.com/"
+      },
+      {
+        "label": "Household application, English (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/household_application_english.pdf"
+      },
+      {
+        "label": "Household application, Spanish (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/household_application_spanish.pdf"
+      },
+      {
+        "label": "Meal Modification Medical Statement (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/meal_modification_medical_statement_english.pdf"
+      },
+      {
+        "label": "Wellness Policy 26 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/wellness_policy_26.pdf"
+      },
+      {
+        "label": "Wellness Policy assessment (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/wellness_policy_assessment.pdf"
+      },
+      {
+        "label": "Wellness page",
+        "url": "https://www.macschool.us/wellness"
+      },
+      {
+        "label": "GPO RFP (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/gpo_rfp.pdf"
+      }
+    ],
+    "notes": "Menus aren't posted on the site; families find them in SchoolCafe."
+  },
+  {
+    "id": "donations",
+    "title": "Donations",
+    "url": "https://www.macschool.us/macs-pto-donation",
+    "summary": "Donations go to the Capital Campaign for an additional classroom building, given online through a ParentSquare donation post. The Barn Bash gala and the Brick Campaign support the same effort.",
+    "facts": [
+      "Donations support the Capital Campaign for building expansion (an additional classroom building, per the Barn Bash page)",
+      "Online giving is through a ParentSquare 'Capital Campaign Donation' post",
+      "Related fundraisers: Barn Bash gala and Brick Campaign (Unity Park legacy sidewalk)",
+      "Otis Spunkmeyer fundraiser raised $9,000 (MACS Matters, Oct 8, 2026)"
+    ],
+    "links": [
+      {
+        "label": "Capital Campaign donation (ParentSquare)",
+        "url": "https://www.parentsquare.com/feeds/67487591"
+      },
+      {
+        "label": "Donation campaign flyer (image)",
+        "url": "https://files.smartsites.parentsquare.com/10331/Donation%20Campaign%20Flyer_1788530871.png"
+      },
+      {
+        "label": "Support MACS / PTO",
+        "url": "https://www.macschool.us/pto"
+      },
+      {
+        "label": "Barn Bash",
+        "url": "https://www.macschool.us/barn-bash"
+      },
+      {
+        "label": "Brick Campaign",
+        "url": "https://www.macschool.us/brick-campaign"
+      }
+    ],
+    "notes": "The campaign goal and building plans appear only in the flyer image."
+  },
+  {
+    "id": "employment",
+    "title": "Employment",
+    "url": "https://www.macschool.us/home",
+    "summary": "Applicants submit a completed, signed employment application and a resume, by email or in person, to School Director Brenda Maynard or Operations Coordinator Pam Bowman. Job offers depend on passing a Level 2 background screening, and the page links current postings, an online application, the benefits plan and new-hire forms.",
+    "facts": [
+      "Apply with a signed Employment Application plus resume to Brenda Maynard (MaynardB@macschool.us) or Pam Bowman (bowmanp@macschool.us)",
+      "Brenda Maynard is School Director; Pam Bowman is Operations Coordinator",
+      "Offers are contingent on a Level 2 background screening (Florida Clearinghouse)",
+      "Staff ideals named: Community, Leadership, Service; serving VPK through 7th grade",
+      "'Apply Online' links to an Indeed posting for a Teacher K-5",
+      "New-hire forms posted: direct deposit, drug-free workplace, emergency contact, I-9, W-4 (2022), staff data collection",
+      "Employee Handbook 2025 and Employee Benefit Plan posted",
+      "Staff testimonials from Leslie Lutz (Middle School & Lead Teacher) and Kelly Minton (Assistant Director)",
+      "Homepage lists 43 teachers and staff"
+    ],
+    "links": [
+      {
+        "label": "Current job postings",
+        "url": "https://www.macschool.us/job-descriptions"
+      },
+      {
+        "label": "Apply online (Indeed)",
+        "url": "https://www.indeed.com/job/teacher-k-5-cb16bdc493315ce8"
+      },
+      {
+        "label": "Employment application (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/employment_application.pdf"
+      },
+      {
+        "label": "Employee benefit plan (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/employee_benefit_plan.pdf"
+      },
+      {
+        "label": "Employee Handbook 2025 (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/employee_handbook_2025.pdf"
+      },
+      {
+        "label": "Clearinghouse education and awareness",
+        "url": "https://info.flclearinghouse.com/education-awareness"
+      },
+      {
+        "label": "Apply page",
+        "url": "https://www.macschool.us/apply"
+      }
+    ],
+    "notes": "Check the job postings page for current openings. The posted W-4 is the 2022 version."
+  },
+  {
+    "id": "after-school",
+    "title": "After School",
+    "url": "https://www.macschool.us/afterschool",
+    "summary": "After-school care on campus is run by Blue Wave Afterschool, offering homework help, snack and a daily menu of free-choice activities grouped by age and grade. It runs from dismissal to 5:30 pm on school days and is currently full, so new registrations go on a waitlist.",
+    "facts": [
+      "Operator: Blue Wave Afterschool Program (BWASP)",
+      "Hours: Monday-Friday, dismissal to 5:30 pm; closed on school holidays and teacher workdays",
+      "Late pickup: $5.00 per quarter hour after 5:30 pm",
+      "Full time (3-5 days): $70 first child, $64 siblings (2025-26 fees)",
+      "Part time (1-2 days): $35 first child, $32 siblings (2025-26 fees)",
+      "Program is full; submitting the registration form places a child on the waitlist",
+      "Email registration forms to bluewaveafterschoolmacs@gmail.com",
+      "Contacts: Christi Dorofy 352-514-1448; Rob Cox (Director) 352-871-3979",
+      "Separately, MACS offers free before-school care (Morning Mile, Homework Help, morning clubs)"
+    ],
+    "links": [
+      {
+        "label": "Blue Wave Afterschool website",
+        "url": "https://www.bluewaveafterschool.com/"
+      },
+      {
+        "label": "Blue Wave parent handbook",
+        "url": "https://nebula.wsimg.com/ddf0ce0cd42ed2d233a042bb62e24f1f?AccessKeyId=50D87EB8657D6008E326&disposition=0&alloworigin=1"
+      },
+      {
+        "label": "Blue Wave registration form (PDF)",
+        "url": "https://files.smartsites.parentsquare.com/10331/blue_wave_24-25_registration_form.pdf"
+      },
+      {
+        "label": "VPK Extended Day registration",
+        "url": "https://forms.gle/msxXetVqp15HqyHe9"
+      }
+    ],
+    "notes": "Fees shown are 2025-26 rates and don't say weekly or monthly. The email's display text and link differ, and the registration form is labeled 24-25."
+  },
+  {
+    "id": "upcoming-events",
+    "title": "Upcoming Events",
+    "url": "https://www.macschool.us/",
+    "summary": "Near-term school and community events from the homepage list and the online calendar: Robotics Club and Soccer Shots sessions, field trips to St. Augustine, Red House Ranch and the Cade Museum, a Skate Station spirit night, a PTO meeting, report cards, Trunk or Treat, the Halloween Parade and the Micanopy Fall Festival.",
+    "facts": [
+      "Oct 15: 4th grade St. Augustine field trip (7:00 AM-5:30 PM) and MACS Spirit Night at Skate Station (6:30-8:30 PM)",
+      "Oct 16: student holiday / teacher workday",
+      "Oct 19: K-2nd grade field trip to Red House Ranch (9:30 AM-1:00 PM) and PTO meeting (6-7 PM)",
+      "Robotics Club (4th-7th) meets Tue/Thu 2:30-4:00 PM; Soccer Shots meets Wed 1:15-1:45 PM",
+      "Oct 29: 3rd grade field trip to the Cade Museum (9:30 AM)",
+      "Oct 30: Halloween Parade; Oct 31-Nov 1: Micanopy Fall Festival"
+    ],
+    "links": [
+      {
+        "label": "Full online calendar",
+        "url": "https://www.macschool.us/page/page_calendar?calID=141773"
+      },
+      {
+        "label": "Accessible calendar view",
+        "url": "https://www.macschool.us/page/page_calendar?calID=141773&accessibility=enabled"
+      },
+      {
+        "label": "2026-27 school calendar page",
+        "url": "https://www.macschool.us/calendar-26-27"
+      }
+    ],
+    "notes": "The homepage widget lists each event twice (two calendar feeds), and the online calendar showed nothing past Nov 7, 2026.",
+    "events": [
+      {
+        "date": "2026-10-13",
+        "title": "End of First Nine Weeks (45 Days)",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-13",
+        "title": "Last day for our 2nd-3rd Grade Robotics Club",
+        "time": "2:30 PM - 3:30 PM"
+      },
+      {
+        "date": "2026-10-13",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM - 4:00 PM"
+      },
+      {
+        "date": "2026-10-14",
+        "title": "Soccer Shots",
+        "time": "1:15 PM - 1:45 PM"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "4th Grade St. Augustine Field Trip",
+        "time": "7:00 AM - 5:30 PM"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "Robotics Club (4th-7th grade) *last day for rec team",
+        "time": "2:30 PM - 4:00 PM"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "MACS Spirit Night @ Skate Station",
+        "time": "6:30 PM - 8:30 PM"
+      },
+      {
+        "date": "2026-10-16",
+        "title": "Student Holiday - Teacher Workday",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-17",
+        "title": "McIntosh Festival",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-19",
+        "title": "Kindergarten, 1st & 2nd Grade Field Trip to Red House Ranch",
+        "time": "9:30 AM - 1:00 PM"
+      },
+      {
+        "date": "2026-10-19",
+        "title": "PTO Meeting",
+        "time": "6:00 PM - 7:00 PM"
+      },
+      {
+        "date": "2026-10-20",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM - 4:00 PM"
+      },
+      {
+        "date": "2026-10-21",
+        "title": "Soccer Shots",
+        "time": "1:15 PM - 1:45 PM"
+      },
+      {
+        "date": "2026-10-22",
+        "title": "Report Cards Available in Family Access",
+        "time": "All Day"
+      },
+      {
+        "date": "2026-10-22",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM - 4:00 PM"
+      },
+      {
+        "date": "2026-10-24",
+        "title": "Downtown Micanopy Trunk or Treat",
+        "time": "6:00 PM - 8:00 PM"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM (start)"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Soccer Shots",
+        "time": "1:15 PM (start)"
+      },
+      {
+        "date": "2026-10-29",
+        "title": "3rd Grade Field Trip To Cade Museum",
+        "time": "9:30 AM (start)"
+      },
+      {
+        "date": "2026-10-29",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM (start)"
+      },
+      {
+        "date": "2026-10-30",
+        "title": "Halloween Parade"
+      },
+      {
+        "date": "2026-10-31",
+        "title": "Micanopy Fall Festival"
+      },
+      {
+        "date": "2026-11-01",
+        "title": "Micanopy Fall Festival"
+      },
+      {
+        "date": "2026-11-03",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM (start)"
+      },
+      {
+        "date": "2026-11-04",
+        "title": "Soccer Shots",
+        "time": "1:15 PM (start)"
+      },
+      {
+        "date": "2026-11-05",
+        "title": "Robotics Club (4th-7th grade)",
+        "time": "2:30 PM (start)"
+      }
+    ]
+  },
+  {
+    "id": "spotlight",
+    "title": "Manatee Spotlight",
+    "url": "https://www.macschool.us/",
+    "summary": "The homepage spotlights a staff member and a student Citizen of the Month, restates what sets MACS apart, and shares recent Manatee Moments news. Its At a Glance panel reports 274 students, 43 teachers and staff, 1:1 Chromebooks and 8 middle school electives.",
+    "facts": [
+      "Staff Spotlight: Mrs. Cheyenne, cafeteria assistant",
+      "Citizen of the Month: one student is recognized each month on the homepage",
+      "Why Micanopy?: free charter school, Pre-K through 7th grade, 20 minutes south of Gainesville",
+      "Differentiators: Academic Excellence, Positive School Culture, Embracing Innovation",
+      "At a Glance: 274 enrolled students; 43 teachers and staff",
+      "At a Glance: 1:1 Chromebook-to-student ratio; 8 middle school electives",
+      "2026-10-09 'Hard Work Pays Off At Monthly Masters': first Monthly Masters celebration of the year, with Halloween-themed games",
+      "2026-10-08 'MACS Matters 10-08-26': no school Oct 9 and Oct 16; Otis Spunkmeyer fundraiser raised $9,000",
+      "2026-10-06 'Congratulations to our VPK Team!': Early Learning Coalition recognized VPK staff Mrs. Sandi, Mrs. Jen, Ms. Hayley, Ms. Tasha",
+      "2026-10-05 'Fundraiser update! Last Day!': final push for the ShopFund fundraiser (group code X3MK8), ending the next day"
+    ],
+    "links": [
+      {
+        "label": "Hard Work Pays Off At Monthly Masters",
+        "url": "https://www.macschool.us/index.php?pageID=smartSiteFeed&psqFeed=true&articleID=91975615"
+      },
+      {
+        "label": "MACS Matters 10-08-26",
+        "url": "https://www.macschool.us/index.php?pageID=smartSiteFeed&psqFeed=true&articleID=91855298"
+      },
+      {
+        "label": "Congratulations to our VPK Team!",
+        "url": "https://www.macschool.us/index.php?pageID=smartSiteFeed&psqFeed=true&articleID=91583608"
+      },
+      {
+        "label": "Fundraiser update! Last Day!",
+        "url": "https://www.macschool.us/index.php?pageID=smartSiteFeed&psqFeed=true&articleID=91288890"
+      },
+      {
+        "label": "More news",
+        "url": "http://www.macschool.us/75173_1"
+      },
+      {
+        "label": "ParentSquare app sign-in",
+        "url": "https://www.parentsquare.com/signin"
+      },
+      {
+        "label": "GreatSchools school profile",
+        "url": "https://www.greatschools.org/florida/micanopy/49-Micanopy-Area-Cooperative-School-Inc/"
+      },
+      {
+        "label": "Learn More About Us",
+        "url": "https://www.macschool.us/about-us"
+      }
+    ],
+    "notes": "Spotlight details are images only. 'At a Glance' calls MACS a 'K-6 school' while other pages say Pre-K-7."
+  }
+]
