@@ -1,3 +1,4 @@
+import { profile } from "@/profiles";
 import type { AdminRoleId } from "./roles";
 import type { ToolId } from "./tools";
 
@@ -14,11 +15,13 @@ import type { ToolId } from "./tools";
 export type Area = "general" | "students" | "supports" | "finance";
 export const AREAS: Area[] = ["general", "students", "supports", "finance"];
 
+/** Area names, with the active profile's renames applied. */
 export const AREA_LABEL: Record<Area, string> = {
   general: "Everyone",
   students: "Student records",
   supports: "IEP & 504",
   finance: "Finance",
+  ...profile.areaLabels,
 };
 
 const ROLE_AREAS: Record<AdminRoleId, Area[]> = {
@@ -58,4 +61,5 @@ export const TOOL_AREA: Record<ToolId, Area> = {
   mac: "general",
 };
 
-export const canOpenTool = (role: AdminRoleId, tool: ToolId) => canAccess(role, TOOL_AREA[tool]);
+/** A tool opens when the profile includes it and the role can see its area. */
+export const canOpenTool = (role: AdminRoleId, tool: ToolId) => profile.tools.includes(tool) && canAccess(role, TOOL_AREA[tool]);

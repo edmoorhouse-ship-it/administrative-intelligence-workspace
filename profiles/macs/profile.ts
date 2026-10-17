@@ -1,5 +1,8 @@
 import badge from "@/public/brand/macs-manatees.png";
+import { TOOL_IDS } from "../../lib/tools";
 import type { Profile } from "../types";
+import { macsRoles } from "./roles.ts";
+import { macsStarters } from "./starters.ts";
 
 /** Micanopy Area Cooperative School: the first client, and the workspace as it was built. */
 export const macs: Profile = {
@@ -17,5 +20,8 @@ export const macs: Profile = {
     light: { brand: "#324c9a", accent: "#d8b820", send: "#324c9a", deep: "#324c9a" },
     dark: { brand: "#8fa6e6", accent: "#e3c43a", send: "#3f5db5", deep: "#2b4185" },
   },
-  features: { leveling: false },
+  roles: macsRoles,
+  tools: [...TOOL_IDS],
+  starters: macsStarters,
+  features: { leveling: false, schoolSections: true, manny: true },
 };

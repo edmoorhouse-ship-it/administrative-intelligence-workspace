@@ -1,4 +1,6 @@
 import type { Profile } from "../types";
+import { constructionRoles } from "./roles.ts";
+import { constructionStarters } from "./starters.ts";
 
 /**
  * Preconstruction: bid leveling and pricing for a multifamily developer-builder. Deliberately generic:
@@ -20,5 +22,17 @@ export const construction: Profile = {
     light: { brand: "#1f4e79", accent: "#f5a64f", send: "#1f4e79", deep: "#1f4e79" },
     dark: { brand: "#7fb0e0", accent: "#f5a64f", send: "#2f6aa3", deep: "#1b4469" },
   },
-  features: { leveling: true },
+  roles: constructionRoles,
+  // The access areas, renamed for a builder. Same rules: pricing is the finance area.
+  areaLabels: {
+    general: "Everyone",
+    finance: "Pricing & budget",
+    students: "Project records",
+    supports: "Contracts & risk",
+  },
+  // The school tool pages stay off; Bid leveling is the first construction tool. Pulse and the
+  // calendar come back with construction data (PLAN.md step 4).
+  tools: [],
+  starters: constructionStarters,
+  features: { leveling: true, schoolSections: false, manny: false },
 };

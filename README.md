@@ -4,13 +4,13 @@ A reusable AI workspace for running a business's admin work: chat grounded in th
 
 ## Profiles (one workspace, many clients)
 
-Each client is a folder in `profiles/` with a `profile.ts`: name, short name, sidebar label, tagline, logo (an image or up to three letters), and light and dark colors. Pick one in `.env.local` and restart:
+Each client is a folder in `profiles/` with a `profile.ts`: name, short name, sidebar label, tagline, logo (an image or up to three letters), light and dark colors, roles (`roles.ts`), quick starts (`starters.ts`), area names, and which sidebar tools and pages show. Pick one in `.env.local` and restart:
 
 ```
 WORKSPACE_PROFILE=construction   # or macs (the default)
 ```
 
-The construction profile adds **Bid leveling** to the sidebar. So far the profile sets the brand only; the tools, roles, data, and the assistant's prompt are still the MACS ones (see `PLAN.md`, steps 2 and 3).
+Roles fill six fixed slots that carry the access rules in `lib/access.ts`. In the construction profile: Preconstruction Director (the "principal" slot: sees everything, approves, manages the team), Estimator ("finance": pricing and budget), Project Manager and Project Coordinator (project records), and Development (pricing and budget, decision level). The construction sidebar shows **Bid leveling** and the shared brain; the school tools, school sections, and Manny are off. The sample data and the assistant's background prompt are still the MACS ones until `PLAN.md` step 3.
 
 ## Bid leveling (construction profile)
 

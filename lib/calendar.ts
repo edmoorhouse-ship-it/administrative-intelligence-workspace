@@ -1,4 +1,4 @@
-import { canAccess, type Area } from "./access";
+import { AREA_LABEL, canAccess, type Area } from "./access";
 import { macsData } from "./macs-data";
 import type { AdminRoleId } from "./roles";
 import { SCHOOL_SECTIONS, SITE_CHECKED_ON } from "./school-sections";
@@ -42,12 +42,7 @@ export const addDays = (iso: string, n: number) => {
 export const daysBetween = (fromIso: string, toIso: string) =>
   Math.round((parseIso(toIso).getTime() - parseIso(fromIso).getTime()) / 86_400_000);
 
-export const AREA_NAME: Record<Area, string> = {
-  general: "Everyone",
-  finance: "Finance",
-  students: "Student records",
-  supports: "IEP & 504",
-};
+export const AREA_NAME: Record<Area, string> = AREA_LABEL;
 
 /** Lines from the sample dataset that say what they are, not just when. */
 const datasetArea = (text: string): Area => {
@@ -269,12 +264,9 @@ export function sharedAsCalendar(list: SharedEvent[]): CalEvent[] {
     }));
 }
 
-export const AREA_LABEL_FOR_SUGGESTION: Record<string, Area> = {
-  everyone: "general",
-  finance: "finance",
-  "student records": "students",
-  "iep & 504": "supports",
-};
+export const AREA_LABEL_FOR_SUGGESTION: Record<string, Area> = Object.fromEntries(
+  (Object.entries(AREA_NAME) as [Area, string][]).map(([area, name]) => [name.toLowerCase(), area]),
+);
 
 /** The line the calendar assistant ends a reply with to propose an event. */
 export const CALENDAR_SUGGEST_PREFIX = "Suggest for the calendar:";

@@ -12,7 +12,8 @@ the first client profile and stays the proof that the core can be resold.
 
 1. **Brand layer.** (Done) Move the name, logo, colors, tagline, and browser title into `profiles/<id>/profile.ts`.
    Pick the active profile with `WORKSPACE_PROFILE` in `.env.local`.
-2. **Roles and tools.** Roles, role areas, sidebar tools, and quick starts come from the profile.
+2. **Roles and tools.** (Done) Roles, role areas, sidebar tools, and quick starts come from the profile.
+   Roles fill six fixed slots so the access rules stay in one place.
 3. **Data and prompt.** The dataset, the "today" date, sections, and the system prompt's
    business description come from the profile. The core keeps the rules (citations, sample-data labels).
 4. **Pulse and calendar.** Each profile supplies its own Pulse metrics and calendar sources.

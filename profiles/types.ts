@@ -1,4 +1,8 @@
 import type { StaticImageData } from "next/image";
+import type { Area } from "../lib/access";
+import type { AdminRole } from "../lib/roles";
+import type { PromptStarter } from "../lib/starters";
+import type { ToolId } from "../lib/tools";
 
 /** The accent colors a profile sets. Everything else (surfaces, text, lines) stays in globals.css. */
 export interface Palette {
@@ -14,7 +18,7 @@ export interface Palette {
 
 /**
  * Who the workspace is for: the parts of the interface that change from one business to the next.
- * Roles, tools, data, and the assistant's prompt move into the profile in later steps (see PLAN.md).
+ * Data and the assistant's prompt move into the profile in later steps (see PLAN.md).
  */
 export interface Profile {
   id: string;
@@ -35,6 +39,25 @@ export interface Profile {
   /** An image (square, at least 120px), or up to three letters drawn as a badge. */
   logo: { image: StaticImageData } | { monogram: string };
   colors: { light: Palette; dark: Palette };
-  /** Pages this profile shows in the sidebar beyond the shared ones. */
-  features: { leveling: boolean };
+  /**
+   * The people who use the workspace. Each fills one of the six fixed role slots, which carry the
+   * access rules in lib/access.ts (the "principal" slot sees everything, approves anything, and
+   * manages the team; "finance" sees and approves the finance area). Leave out slots the business
+   * does not need. The first role is the fallback for unknown ids.
+   */
+  roles: AdminRole[];
+  /** Renames the access areas for this business; areas left out keep the school names. */
+  areaLabels?: Partial<Record<Area, string>>;
+  /** Tool pages in the sidebar, in order. Each is still limited by the role's areas. */
+  tools: ToolId[];
+  /** Suggestion chips under the home composer. */
+  starters: PromptStarter[];
+  features: {
+    /** The Bid leveling page. */
+    leveling: boolean;
+    /** The school sections list in the sidebar (Academics, Operations, ...). */
+    schoolSections: boolean;
+    /** Manny, the floating calendar helper. */
+    manny: boolean;
+  };
 }

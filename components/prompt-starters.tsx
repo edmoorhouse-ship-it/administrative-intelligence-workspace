@@ -1,6 +1,6 @@
 "use client";
 
-import { ChartColumn, ClipboardCheck, Landmark, Newspaper, Sunrise } from "lucide-react";
+import { ChartColumn, ClipboardCheck, FileText, CircleHelp, Landmark, Mail, Newspaper, Scale, Sunrise } from "lucide-react";
 import { PROMPT_STARTERS, type PromptStarter } from "@/lib/starters";
 
 export const STARTER_ICONS = {
@@ -9,6 +9,10 @@ export const STARTER_ICONS = {
   chart: ChartColumn,
   clipboard: ClipboardCheck,
   newspaper: Newspaper,
+  mail: Mail,
+  scale: Scale,
+  help: CircleHelp,
+  file: FileText,
 } satisfies Record<PromptStarter["icon"], unknown>;
 
 /** Claude-style suggestion chips under the home composer. */

@@ -24,8 +24,39 @@ test("the tagline on the brand card is at least as readable as the MACS gold (4.
   }
 });
 
-test("generic branding: no employer, project, or person names", () => {
+test("generic branding, roles, and quick starts: no employer, project, or person names", () => {
   const text = JSON.stringify(construction);
   assert.doesNotMatch(text, /greystar|nona|doral|marlowe|sandlake|moorhouse/i);
   assert.ok("monogram" in construction.logo && construction.logo.monogram.length <= 3);
+});
+
+test("roles fill the slots the workspace relies on, with no school-only slot", () => {
+  const ids = construction.roles.map((r) => r.id);
+  assert.equal(new Set(ids).size, ids.length);
+  // "principal" is who the first sign-in becomes; "office" and "dean" are form defaults on the Brain and Onboarding pages.
+  for (const id of ["principal", "office", "dean"] as const) assert.ok(ids.includes(id), id);
+  assert.ok(!ids.includes("ese"));
+  assert.equal(construction.roles[0].id, "principal");
+  for (const r of construction.roles) assert.ok(r.initials.length === 2 && r.lens.length > 80, r.id);
+});
+
+test("area names are distinct, so a calendar suggestion maps back to one area", () => {
+  const names = Object.values(construction.areaLabels ?? {}).map((n) => n.toLowerCase());
+  assert.equal(names.length, 4);
+  assert.equal(new Set(names).size, 4);
+});
+
+test("no school tools or school pages; leveling on", () => {
+  assert.deepEqual(construction.tools, []);
+  assert.deepEqual(construction.features, { leveling: true, schoolSections: false, manny: false });
+});
+
+test("quick starts: unique, short chips, and every email is a draft the user sends", () => {
+  const ids = construction.starters.map((s) => s.id);
+  assert.equal(new Set(ids).size, ids.length);
+  for (const s of construction.starters) {
+    assert.ok(s.chip.length <= 24, s.chip);
+    if (/email|reminder/i.test(s.title)) assert.match(s.prompt, /draft for me to send/i, s.id);
+    assert.doesNotMatch(s.prompt, /\b(send it|has been sent|mark (it )?as entered)\b/i, s.id);
+  }
 });

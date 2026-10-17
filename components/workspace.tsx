@@ -825,7 +825,7 @@ export function Workspace({ me }: { me: Person }) {
           onClose={() => setSettingsOpen(false)}
         />
       )}
-      <Manny me={me} model={settings.model} customInstructions={settings.customInstructions} onOpenCalendar={() => openDemo("calendar")} />
+      {profile.features.manny && <Manny me={me} model={settings.model} customInstructions={settings.customInstructions} onOpenCalendar={() => openDemo("calendar")} />}
     </div>
   );
 }
