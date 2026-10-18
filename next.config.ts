@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Hide the dev-mode badge so `npm run dev` looks like the finished UI.
   devIndicators: false,
+  // A second profile running at the same time needs its own build folder (scripts/dev-both.mjs sets it).
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   // Which client profile the interface shows (profiles/). Read at start-up, so a change needs a restart.
   env: { WORKSPACE_PROFILE: process.env.WORKSPACE_PROFILE || "macs" },
   cacheComponents: true,

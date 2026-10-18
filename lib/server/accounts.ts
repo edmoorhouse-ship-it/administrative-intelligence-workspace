@@ -4,17 +4,20 @@ import path from "node:path";
 import { promisify } from "node:util";
 import { newId } from "@/lib/chat-utils";
 import { isKnownRole, type AdminRoleId } from "@/lib/roles";
+import { profile } from "@/profiles";
 import { DATA_DIR } from "./store";
 
 /**
  * Staff accounts: one per person, each with a role and their own passcode. Passcodes are stored
  * only as scrypt hashes. Sign-ins are server-side sessions (a random token in an httpOnly cookie,
  * stored here only as a hash), so turning an account off or signing out ends them at once.
- * Kept in data/accounts.json, apart from the shared store, and never sent to a browser whole.
+ * Kept in data/accounts.json (data/accounts-<profile>.json for other profiles), apart from the shared
+ * store, and never sent to a browser whole.
  */
 
 const scrypt = promisify(scryptCb) as (pw: string, salt: Buffer, keylen: number) => Promise<Buffer>;
-const FILE = path.join(DATA_DIR, "accounts.json");
+// Each profile is its own business with its own team, so each keeps its own accounts and sign-ins.
+const FILE = path.join(DATA_DIR, profile.id === "macs" ? "accounts.json" : `accounts-${profile.id}.json`);
 const SESSION_DAYS = 14;
 export const MIN_PASSCODE = 8;
 

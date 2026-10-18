@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:both": "node scripts/dev-both.mjs",
     "build": "next build",
     "start": "next start",
     "start:server": "node scripts/check-server.mjs && next start -H 127.0.0.1 -p 3000",

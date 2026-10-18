@@ -1,11 +1,14 @@
 import { cookies } from "next/headers";
 import { canAccess, type Area } from "@/lib/access";
 import type { AdminRoleId } from "@/lib/roles";
+import { profile } from "@/profiles";
 import { userForToken, type User } from "./accounts";
 
 /** The sign-in cookie, and who is signed in for a request. */
 
-export const SESSION_COOKIE = "macs_session";
+// One cookie per profile: browsers share cookies across ports, so two profiles running side by side
+// on this computer would otherwise sign each other out.
+export const SESSION_COOKIE = profile.id === "macs" ? "macs_session" : `${profile.id}_session`;
 
 /** True when the request came to this computer's own address. */
 export const isLocalHost = (host: string | null) => /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/i.test(host ?? "");
