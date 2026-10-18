@@ -18,6 +18,8 @@ Open **http://127.0.0.1:3000/leveling** while the app is running. Drop in one tr
 
 The **Clarification emails** tab drafts one email per bidder that has gaps, asking only about that bidder's own gaps, grouped into scope, price and math, drawings, and terms, with a reply-by date (2 business days by default) and a request for a revised total. Bidders with nothing to clarify get no email. Copy the draft into Outlook and send it yourself, then click **I sent it** so the team (and the Pulse) can see what's out; **Answer is in** when they reply. Nothing is sent from the workspace and nothing is marked sent for you.
 
+**Coverage board** (sidebar, pricing roles only: Director, Estimator, Development) shows who owes what, trade by trade: each bid package with its due date, coverage against the three-bid target, and a chip per bidder (submitted, bidding, silent, declined). A bidder stays open until a usable proposal arrives, they decline, or you drop them. It adds a call list (at-risk trades first, then soonest due, then longest silence), a chase email draft per bidder to copy into Outlook, and a "find more bidders" note for trades that can't reach three. It's read-only for now and shows no bid amounts.
+
 The rules are in `docs/construction/leveling-spec.md`; the code is in `lib/construction/`. `npm test` runs the leveling tests; `npm run level -- "09: Drywall" <files...>` does the same from Terminal.
 
 > This repo starts from the MACS (Micanopy Area Cooperative School) build, which becomes the first client profile. The notes below still describe that build.

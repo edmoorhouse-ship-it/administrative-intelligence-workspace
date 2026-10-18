@@ -48,7 +48,7 @@ test("area names are distinct, so a calendar suggestion maps back to one area", 
 
 test("only the construction-ready tools; no school pages; the helper is the Scheduler", () => {
   assert.deepEqual(construction.tools, ["pulse", "calendar"]);
-  assert.deepEqual(construction.features, { leveling: true, schoolSections: false, manny: true });
+  assert.deepEqual(construction.features, { leveling: true, coverage: true, schoolSections: false, manny: true });
   assert.equal(construction.helper.name, "Scheduler");
 });
 

@@ -36,8 +36,11 @@ the first client profile and stays the proof that the core can be resold.
    5. **Bidder-specific clarifications.** (Done) Drafted per bidder from that bidder's actual gaps, grouped
       (scope, price and math, drawings, terms), with a reply-by date. Copy into Outlook; mark sent and
       answered on the page so the team and the Pulse see what is out.
-   6. **Coverage board and bid calendar.** Who owes what; bids due, addenda, RFIs; Pulse shows
-      trades not yet leveled, open clarifications, and bids due this week.
+   6. **Coverage board and bid calendar.** (Done) Who owes what; bids due, addenda, RFIs; Pulse shows
+      trades not yet leveled, open clarifications, and bids due this week. The board (`/coverage`,
+      pricing roles only) is read-only for now: trade rows with bidder chips, a call list, chase
+      email drafts, and a find-more-bidders note. Status updates come with the BuildingConnected and
+      Outlook sources (step 7).
    Sample data only. No employer, project, vendor, or people names in the repo.
 6. **Profile 2: MACS.** The current school setup, unchanged in behavior.
 7. **Sources.** Spreadsheets and PDFs first (no accounts needed), then Notion, then

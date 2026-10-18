@@ -70,6 +70,8 @@ export interface Profile {
   features: {
     /** The Bid leveling page. */
     leveling: boolean;
+    /** The coverage board page (pricing roles only). */
+    coverage: boolean;
     /** The school sections list in the sidebar (Academics, Operations, ...). */
     schoolSections: boolean;
     /** The floating calendar helper (Manny for MACS). */

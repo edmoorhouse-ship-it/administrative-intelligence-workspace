@@ -43,5 +43,5 @@ export const construction: Profile = {
   dataAsOf: PORTFOLIO_AS_OF,
   dataNotice: PORTFOLIO_NOTICE,
   helper: { name: "Scheduler", role: "the precon team's scheduling assistant", face: "badge" },
-  features: { leveling: true, schoolSections: false, manny: true },
+  features: { leveling: true, coverage: true, schoolSections: false, manny: true },
 };

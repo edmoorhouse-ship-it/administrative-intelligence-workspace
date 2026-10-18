@@ -4,39 +4,40 @@ import { useCallback, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   Activity,
   Archive,
+  ArchiveRestore,
   Backpack,
+  Banknote,
   Brain,
   CalendarDays,
-  LogOut,
-  ScrollText,
-  ArchiveRestore,
   ChevronDown,
   Circle,
+  ClipboardList,
   Ellipsis,
   Inbox,
-  Monitor,
-  Banknote,
-  Palette,
+  LogOut,
   MessageSquare,
-  ShieldCheck,
-  UserPlus,
-  Package,
-  Receipt,
+  Monitor,
   Moon,
+  Package,
+  Palette,
   PanelLeft,
   Pencil,
   Pin,
   PinOff,
   Plus,
+  Receipt,
+  Scale,
+  ScrollText,
   Search,
   Settings2,
+  ShieldCheck,
   SlidersHorizontal,
   Sun,
   Trash,
+  UserPlus,
   X,
-  Scale,
 } from "lucide-react";
-import { canOpenTool } from "@/lib/access";
+import { canAccess, canOpenTool } from "@/lib/access";
 import { BRAIN_SEED, type Fact } from "@/lib/brain";
 import { groupChats } from "@/lib/chat-utils";
 import { signOut, useShared, useTeam, type Person } from "@/lib/shared-client";
@@ -247,6 +248,14 @@ function SidebarPanel(props: SidebarProps & { mobile?: boolean }) {
               <Scale className="size-4" strokeWidth={1.75} />
             </span>
             <span className="flex-1">Bid leveling</span>
+          </Link>
+        )}
+        {profile.features.coverage && canAccess(props.me.role, "finance") && (
+          <Link href="/coverage" className="flex h-8 w-full items-center gap-2 rounded-lg px-0.5 text-left text-sm text-secondary transition-colors hover:bg-hover hover:text-fg">
+            <span className="flex size-7 items-center justify-center">
+              <ClipboardList className="size-4" strokeWidth={1.75} />
+            </span>
+            <span className="flex-1">Coverage board</span>
           </Link>
         )}
       </nav>
